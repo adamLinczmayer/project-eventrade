@@ -11,6 +11,7 @@ public class Cart {
     private Long id;
 
     @OneToOne
+    @Transient
     private User user;
 
     @OneToMany(mappedBy = "cart")

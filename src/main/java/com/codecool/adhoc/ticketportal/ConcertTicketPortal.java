@@ -3,7 +3,9 @@ package com.codecool.adhoc.ticketportal;
 import com.codecool.adhoc.ticketportal.model.Band;
 import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
+import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
+import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +18,7 @@ public class ConcertTicketPortal {
         populateBandDB(em);
         populateLocationDB(em);
         populateEventDB(em);
+        populateTicketDB(em);
     }
 
     public static void populateBandDB(EntityManager em) {
@@ -48,6 +51,19 @@ public class ConcertTicketPortal {
         em.persist(location);
         em.persist(band);
         em.persist(event);
+        transaction.commit();
+
+    }
+
+    public static void populateTicketDB(EntityManager em){
+        Event event = em.find(Event.class, 1L);
+        Ticket ticket1 = new Ticket(event, 200f, TicketType.NORMAL);
+        Ticket ticket2 = new Ticket(event, 100f, TicketType.STUDENT);
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(ticket1);
+        em.persist(ticket2);
         transaction.commit();
 
     }

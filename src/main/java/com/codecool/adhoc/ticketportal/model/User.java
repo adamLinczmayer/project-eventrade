@@ -17,8 +17,8 @@ public class User {
     @OneToOne
     private Cart cart;
 
-    @OneToMany(mappedBy = "users")
-    private Set<Order> orders = new HashSet<>();
+    /*@OneToMany(mappedBy = "users")
+    private Set<Order> orders = new HashSet<>();*/
 
     @Column(name = "user_name")
     private String userName;
@@ -45,10 +45,10 @@ public class User {
         this.email = email;
         this.userType = userType;
         this.cart = cart;
-        this.orders = orders;
+        //this.orders = orders;
     }
 
-    public Set<Order> getOrders() {
+    /*public Set<Order> getOrders() {
         return orders;
     }
 
@@ -58,7 +58,7 @@ public class User {
 
     public void addOrder(Order order) {
         this.orders.add(order);
-    }
+    }*/
 
     public UserType getUserType() {
         return userType;

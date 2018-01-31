@@ -15,8 +15,8 @@ public class LineItem {
     @ManyToOne
     private Cart cart;
 
-    @ManyToOne
-    private Order order;
+    /*@ManyToOne
+    private Order order;*/
 
     private Integer quantity;
 
@@ -37,13 +37,13 @@ public class LineItem {
         this.cart = cart;
     }
 
-    public Order getOrder() {
+   /* public Order getOrder() {
         return order;
     }
 
     public void setOrder(Order order) {
         this.order = order;
-    }
+    }*/
 
     public long getId() {
         return id;
