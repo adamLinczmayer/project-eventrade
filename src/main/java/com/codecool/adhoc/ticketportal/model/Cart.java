@@ -17,7 +17,6 @@ public class Cart {
     @OneToMany
     private Set<LineItem> lineItems;
 
-
     public Cart() {
     }
 
