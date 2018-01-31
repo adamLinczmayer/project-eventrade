@@ -2,7 +2,7 @@ package com.codecool.adhoc.ticketportal.model;
 
 public class LineItem {
 
-    private long id;
+    private Long id;
 
     private Ticket ticket;
 

@@ -2,7 +2,7 @@ package com.codecool.adhoc.ticketportal.model;
 
 public class Cart {
 
-    private long id;
+    private Long id;
 
     public Cart() {
     }

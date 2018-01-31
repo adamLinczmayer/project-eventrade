@@ -2,7 +2,7 @@ package com.codecool.adhoc.ticketportal.model;
 
 public class Location {
 
-    private long id;
+    private Long id;
     private String name;
     private String address;
     private Integer capacity;

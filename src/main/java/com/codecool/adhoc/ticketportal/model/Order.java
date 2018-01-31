@@ -4,7 +4,7 @@ import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 
 public class Order {
 
-    private long id;
+    private Long id;
 
     private User user;
 
