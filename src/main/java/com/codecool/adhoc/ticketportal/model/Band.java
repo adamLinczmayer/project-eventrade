@@ -1,18 +1,30 @@
 package com.codecool.adhoc.ticketportal.model;
 
-import javax.swing.text.Style;
+import javax.persistence.*;
+import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
 public class Band {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    private Style style;
+    @Enumerated(EnumType.STRING)
+    private MusicStyle musicStyle;
+
+    @ManyToMany(mappedBy = "bands")
+    private Set<Event> events = new HashSet<>();
 
     public Band() {
     }
 
-    public Band(String name, Style style) {
+    public Band(String name, MusicStyle musicStyle) {
         this.name = name;
-        this.style = style;
+        this.musicStyle = musicStyle;
     }
 
     public String getName() {
@@ -23,11 +35,11 @@ public class Band {
         this.name = name;
     }
 
-    public Style getStyle() {
-        return style;
+    public MusicStyle getStyle() {
+        return musicStyle;
     }
 
-    public void setStyle(Style style) {
-        this.style = style;
+    public void setStyle(MusicStyle musicStyle) {
+        this.musicStyle = musicStyle;
     }
 }

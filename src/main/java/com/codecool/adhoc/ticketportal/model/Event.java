@@ -3,10 +3,17 @@ package com.codecool.adhoc.ticketportal.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
 
+@Entity
 public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToMany
+    @JoinTable(name = "event_bands")
     private Set<Band> bands = new HashSet<>();
+    @OneToOne
     private Location location;
     private Date date;
 
