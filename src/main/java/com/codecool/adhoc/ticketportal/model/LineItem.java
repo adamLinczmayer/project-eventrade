@@ -16,6 +16,7 @@ public class LineItem {
     private Cart cart;
 
     @ManyToOne
+    @Transient
     private Order order;
 
     private Integer quantity;

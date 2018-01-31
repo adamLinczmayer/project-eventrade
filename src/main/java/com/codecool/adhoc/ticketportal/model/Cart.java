@@ -10,17 +10,13 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "cart")
     @Transient
     private User user;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany
     private Set<LineItem> lineItems;
 
-    public Cart(User user, Set<LineItem> lineItems) {
-        this.user = user;
-        this.lineItems = lineItems;
-    }
 
     public Cart() {
     }
