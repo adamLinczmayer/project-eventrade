@@ -18,7 +18,7 @@ public class ConcertTicketPortal {
         populateEventDB(em);
     }
 
-    public static void populateBandDB(EntityManager em) {
+    private static void populateBandDB(EntityManager em) {
         Band band = new Band("Lakodalmas Lajos" , MusicStyle.ROLLICKING);
 
         EntityTransaction transaction = em.getTransaction();
@@ -27,7 +27,7 @@ public class ConcertTicketPortal {
         transaction.commit();
     }
 
-    public static void populateLocationDB(EntityManager em) {
+    private static void populateLocationDB(EntityManager em) {
         Location location = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
 
         EntityTransaction transaction = em.getTransaction();
@@ -36,7 +36,7 @@ public class ConcertTicketPortal {
         transaction.commit();
     }
 
-    public static void populateEventDB(EntityManager em) {
+    private static void populateEventDB(EntityManager em) {
         Band band = new Band("Bunyós Pityu" , MusicStyle.ROLLICKING);
         Location location = new Location("laksn", "sdéalkm u. 43421.", 1);
         Event event = new Event(location, new Date(1600, 13, 32));
