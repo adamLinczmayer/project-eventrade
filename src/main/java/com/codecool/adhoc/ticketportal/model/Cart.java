@@ -42,7 +42,7 @@ public class Cart {
     }
 
     public void addLineItem(LineItem lineItem) {
-        lineItems.add(lineItem);
+        this.lineItems.add(lineItem);
 
     }
 

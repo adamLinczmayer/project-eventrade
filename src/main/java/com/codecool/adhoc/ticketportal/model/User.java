@@ -33,7 +33,8 @@ public class User {
     @Column(name = "card_number")
     private String cardNumber;
 
-    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private UserType userType;
 
     public User() {
