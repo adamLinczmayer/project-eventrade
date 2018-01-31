@@ -13,7 +13,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private User users;
     @OneToMany
     private Set<LineItem> lineItems;
     @Enumerated(EnumType.STRING)
@@ -23,7 +23,7 @@ public class Order {
     }
 
     public Order(User user, Set<LineItem> lineItems, OrderStatus status) {
-        this.user = user;
+        this.users = user;
         this.lineItems = lineItems;
         this.status = status;
     }
@@ -45,11 +45,11 @@ public class Order {
     }
 
     public User getUser() {
-        return user;
+        return users;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.users = user;
     }
 
     public OrderStatus getStatus() {
