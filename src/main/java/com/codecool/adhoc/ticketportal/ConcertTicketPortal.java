@@ -1,10 +1,12 @@
 package com.codecool.adhoc.ticketportal;
 
 import com.codecool.adhoc.ticketportal.model.Band;
+import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 
 import javax.persistence.*;
+import java.util.Date;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
@@ -13,7 +15,7 @@ public class ConcertTicketPortal {
 
         populateBandDB(em);
         populateLocationDB(em);
-
+        populateEventDB(em);
     }
 
     public static void populateBandDB(EntityManager em) {
@@ -33,4 +35,21 @@ public class ConcertTicketPortal {
         em.persist(location);
         transaction.commit();
     }
+
+    public static void populateEventDB(EntityManager em) {
+        Band band = new Band("Bunyós Pityu" , MusicStyle.ROLLICKING);
+        Location location = new Location("laksn", "sdéalkm u. 43421.", 1);
+        Event event = new Event(location, new Date(1600, 13, 32));
+
+        event.addBand(band);
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(location);
+        em.persist(band);
+        em.persist(event);
+        transaction.commit();
+
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.codecool.adhoc.ticketportal.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Location {
@@ -13,6 +15,10 @@ public class Location {
     private String address;
     @Column(nullable = false)
     private Integer capacity;
+
+    @OneToOne(mappedBy = "location")
+    @Transient
+    private Event event;
 
     public Location() {
     }

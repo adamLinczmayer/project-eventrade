@@ -3,6 +3,9 @@ package com.codecool.adhoc.ticketportal.model;
 import javax.persistence.*;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Band {
     @Id
@@ -12,6 +15,9 @@ public class Band {
     private String name;
     @Enumerated(EnumType.STRING)
     private MusicStyle musicStyle;
+
+    @ManyToMany(mappedBy = "bands")
+    private Set<Event> events = new HashSet<>();
 
     public Band() {
     }
