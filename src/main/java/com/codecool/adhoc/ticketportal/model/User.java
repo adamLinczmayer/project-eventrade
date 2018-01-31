@@ -2,24 +2,62 @@ package com.codecool.adhoc.ticketportal.model;
 
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String email;
-    private String fullName;
-    private String password;
-    private String cardNumber;
+
+    @OneToOne
     private Cart cart;
+
+    @OneToMany(mappedBy = "users")
+    private Set<Order> orders = new HashSet<>();
+
+    @Column(name = "user_name")
+    private String userName;
+
+    private String email;
+
+    @Column(name = "full_name")
+    private String fullName;
+
+    private String password;
+
+    @Column(name = "card_number")
+    private String cardNumber;
+
+    @Column(name = "user_type")
     private UserType userType;
 
     public User() {
     }
 
-    public User(String userName, String email, UserType userType) {
+    public User(String userName, String email, String fullName, UserType userType, Cart cart, Set<Order> orders) {
+        this.fullName = fullName;
         this.userName = userName;
         this.email = email;
         this.userType = userType;
+        this.cart = cart;
+        this.orders = orders;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
     }
 
     public UserType getUserType() {
