@@ -1,10 +1,17 @@
 package com.codecool.adhoc.ticketportal.model;
 
-public class Location {
+import javax.persistence.*;
 
+@Entity
+public class Location {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private Integer capacity;
 
     public Location() {

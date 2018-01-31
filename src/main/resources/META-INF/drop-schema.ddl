@@ -1,3 +1,9 @@
 drop table if exists Band cascade
 drop table if exists Band cascade
 drop table if exists Band cascade
+drop table if exists Band cascade
+drop table if exists Location cascade
+drop table if exists Band cascade
+drop table if exists Location cascade
+drop table if exists Band cascade
+drop table if exists Location cascade
