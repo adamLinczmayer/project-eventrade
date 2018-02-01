@@ -1,15 +1,21 @@
 package com.codecool.adhoc.ticketportal.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "Event.findAllEvents",
+                query = "SELECT e FROM Event e ")
+})
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @ManyToMany
     @JoinTable(name = "event_bands")
     private Set<Band> bands = new HashSet<>();
@@ -20,7 +26,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(Location location, Date date) {
+    public Event(String name, Location location, Date date) {
+        this.name = name;
         this.location = location;
         this.date = date;
     }
@@ -47,5 +54,15 @@ public class Event {
 
     public void addBand(Band band) {
         bands.add(band);
+    }
+
+    @Override
+    public String toString() {
+        return "\nEvent" +
+                "\nid=" + id +
+                "\nname=" + name +
+                "\nbands=" + bands +
+                "\nlocation=" + location +
+                "\ndate=" + date;
     }
 }

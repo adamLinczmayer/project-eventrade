@@ -3,6 +3,11 @@ package com.codecool.adhoc.ticketportal.model;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "LineItem.findAllLineItems",
+                query = "SELECT li FROM LineItem li ")
+})
 public class LineItem {
 
     @Id
@@ -38,7 +43,7 @@ public class LineItem {
         this.cart = cart;
     }
 
-   public Order getOrder() {
+    public Order getOrder() {
         return order;
     }
 
@@ -64,5 +69,14 @@ public class LineItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "\nLineItem{" +
+                "\nid=" + id +
+                "\nticket=" + ticket +
+                "\nquantity=" + quantity +
+                '}';
     }
 }

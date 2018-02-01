@@ -9,6 +9,7 @@ import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ConcertTicketPortal {
@@ -24,6 +25,12 @@ public class ConcertTicketPortal {
         populateUserDB(em);
         populateLineItemDB(em);
         populateOrderDB(em);
+
+        List<Event> allEvents = em.createNamedQuery("Event.findAllEvents", Event.class).getResultList();
+        System.out.println(allEvents);
+
+        List<LineItem> allLineItems = em.createNamedQuery("LineItem.findAllLineItems", LineItem.class).getResultList();
+        System.out.println(allLineItems);
 
         em.close();
         emf.close();
@@ -50,7 +57,7 @@ public class ConcertTicketPortal {
     private static void populateEventDB(EntityManager em) {
         Band band = new Band("Bunyós Pityu" , MusicStyle.ROLLICKING);
         Location location = new Location("laksn", "sdéalkm u. 43421.", 1);
-        Event event = new Event(location, new Date(1600, 13, 32));
+        Event event = new Event("Bunyós Pityu koncert", location, new Date(1600, 13, 32));
 
         event.addBand(band);
 
