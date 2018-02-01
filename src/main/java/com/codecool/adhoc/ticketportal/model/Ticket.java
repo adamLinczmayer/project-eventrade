@@ -4,6 +4,17 @@ import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name="Ticket.findAllTickets",
+                query="SELECT t FROM Ticket t " +
+                        "ORDER BY t.id"),
+        @NamedQuery(
+                name="Ticket.findTicketById",
+                query="SELECT t FROM Ticket t " +
+                        "WHERE t.id = :ticketId"
+        )
+})
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,5 +65,14 @@ public class Ticket {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "\nTicket" +
+                "\nid=" + id +
+                "\nevent=" + event +
+                "\nprice=" + price +
+                "\nticketType=" + ticketType;
     }
 }
