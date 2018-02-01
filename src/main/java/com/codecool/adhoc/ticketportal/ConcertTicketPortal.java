@@ -9,6 +9,7 @@ import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ConcertTicketPortal {
@@ -45,6 +46,8 @@ public class ConcertTicketPortal {
         transaction.begin();
         em.persist(location);
         transaction.commit();
+
+        System.out.println(em.createNamedQuery("Location.findByName").setParameter("name", "code").getResultList());
     }
 
     private static void populateEventDB(EntityManager em) {

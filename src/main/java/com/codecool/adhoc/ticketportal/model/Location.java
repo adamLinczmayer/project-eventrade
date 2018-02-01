@@ -5,6 +5,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Location.findByName",
+                    query = "SELECT l FROM Location l " +
+                            "WHERE l.name LIKE :name"),
+        @NamedQuery(name = "Location.findByAddress",
+                    query = "SELECT l FROM Location l " +
+                            "WHERE l.address LIKE :address")
+})
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,5 +63,12 @@ public class Location {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return  "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", capacity=" + capacity;
     }
 }

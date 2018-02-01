@@ -6,6 +6,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Order.findByUserId",
+                    query = "SELECT o FROM Order o " +
+                            "WHERE o.users = :users_id")
+})
 @Table(name="orders")
 public class Order {
 
@@ -61,4 +66,8 @@ public class Order {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "user= " + users.getFullName() + ", status=" + status;
+    }
 }

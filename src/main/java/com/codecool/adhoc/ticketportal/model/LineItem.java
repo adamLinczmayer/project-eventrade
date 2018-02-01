@@ -13,6 +13,7 @@ public class LineItem {
     private Ticket ticket;
 
     @ManyToOne
+    @Transient
     private Cart cart;
 
     @ManyToOne
