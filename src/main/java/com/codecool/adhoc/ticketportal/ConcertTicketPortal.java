@@ -25,6 +25,23 @@ public class ConcertTicketPortal {
         populateUserDB(em);
         populateLineItemDB(em);
         populateOrderDB(em);
+        populateCartDB(em);
+
+        List<Ticket> allTickets = em.createNamedQuery(
+                "Ticket.findAllTickets", Ticket.class)
+                .getResultList();
+        System.out.println(allTickets);
+
+        List<User> allUsers = em.createNamedQuery(
+                "User.findAllUsers", User.class)
+                .getResultList();
+        System.out.println(allUsers);
+
+        List<Event> allEvents = em.createNamedQuery("Event.findAllEvents", Event.class).getResultList();
+        System.out.println(allEvents);
+
+        List<LineItem> allLineItems = em.createNamedQuery("LineItem.findAllLineItems", LineItem.class).getResultList();
+        System.out.println(allLineItems);
 
         em.close();
         emf.close();
@@ -37,11 +54,12 @@ public class ConcertTicketPortal {
         transaction.begin();
         em.persist(band);
         transaction.commit();
+
+        System.out.println(em.createNamedQuery("Band.findAllBands").getResultList());
     }
 
     private static void populateLocationDB(EntityManager em) {
         Location location = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
-
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(location);
@@ -53,7 +71,7 @@ public class ConcertTicketPortal {
     private static void populateEventDB(EntityManager em) {
         Band band = new Band("Bunyós Pityu" , MusicStyle.ROLLICKING);
         Location location = new Location("laksn", "sdéalkm u. 43421.", 1);
-        Event event = new Event(location, new Date(1600, 13, 32));
+        Event event = new Event("Bunyós Pityu koncert", location, new Date(1600, 13, 32));
 
         event.addBand(band);
 
@@ -91,14 +109,17 @@ public class ConcertTicketPortal {
         transaction.commit();
     }
 
-    /*private static void populateCartDB(EntityManager em) {
+    private static void populateCartDB(EntityManager em) {
         Cart cart1 = new Cart();
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(cart1);
         transaction.commit();
-    }*/
+
+        cart1.addLineItem(lineItem1);
+        System.out.println(em.createNamedQuery("Cart.findAllCarts").getResultList());
+    }
 
     private static void populateUserDB(EntityManager em) {
         Cart cart1 = new Cart();

@@ -7,6 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+        name = "Band.findAllBands",
+        query = "SELECT b FROM Band b " +
+                "ORDER BY b.id"),
+})
 public class Band {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -41,5 +47,14 @@ public class Band {
 
     public void setStyle(MusicStyle musicStyle) {
         this.musicStyle = musicStyle;
+    }
+
+    @Override
+    public String toString() {
+        return "Band: " +
+                "\nid=" + id +
+                "\nname='" + name + '\'' +
+                "\nmusicStyle=" + musicStyle +
+                "\nevents=" + events;
     }
 }

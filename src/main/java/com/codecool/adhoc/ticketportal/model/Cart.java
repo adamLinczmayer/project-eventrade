@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "Cart.findAllCarts",
+                query = "SELECT c FROM Cart c " +
+                        "ORDER BY c.id"),
+})
 public class Cart {
 
     @Id
@@ -45,5 +51,11 @@ public class Cart {
         return id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Cart:" +
+                "\nid=" + id +
+                "\nuser=" + user +
+                "\nlineItems=" + lineItems;
+    }
 }
