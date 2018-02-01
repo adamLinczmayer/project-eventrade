@@ -9,6 +9,7 @@ import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ConcertTicketPortal {
@@ -24,6 +25,7 @@ public class ConcertTicketPortal {
         populateUserDB(em);
         populateLineItemDB(em);
         populateOrderDB(em);
+        populateCartDB(em);
 
         em.close();
         emf.close();
@@ -36,11 +38,12 @@ public class ConcertTicketPortal {
         transaction.begin();
         em.persist(band);
         transaction.commit();
+
+        System.out.println(em.createNamedQuery("Band.findAllBands").getResultList());
     }
 
     private static void populateLocationDB(EntityManager em) {
         Location location = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
-
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(location);
@@ -88,14 +91,17 @@ public class ConcertTicketPortal {
         transaction.commit();
     }
 
-    /*private static void populateCartDB(EntityManager em) {
+    private static void populateCartDB(EntityManager em) {
         Cart cart1 = new Cart();
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(cart1);
         transaction.commit();
-    }*/
+
+        cart1.addLineItem(lineItem1);
+        System.out.println(em.createNamedQuery("Cart.findAllCarts").getResultList());
+    }
 
     private static void populateUserDB(EntityManager em) {
         Cart cart1 = new Cart();
