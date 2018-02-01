@@ -67,8 +67,9 @@ public class Location {
 
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", capacity=" + capacity;
+        return "Location: " +
+                "\nname: " + name +
+                ",\naddress: " + address +
+                ",\ncapacity: " + capacity;
     }
 }

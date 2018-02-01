@@ -54,8 +54,6 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart:" +
-                "\nid=" + id +
-                "\nuser=" + user +
-                "\nlineItems=" + lineItems;
+                "\nuser=" + user;
     }
 }

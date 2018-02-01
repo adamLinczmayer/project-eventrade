@@ -52,9 +52,8 @@ public class Band {
     @Override
     public String toString() {
         return "Band: " +
-                "\nid=" + id +
-                "\nname='" + name + '\'' +
-                "\nmusicStyle=" + musicStyle +
-                "\nevents=" + events;
+                "\nid: " + id +
+                ",\nname: '" + name + '\'' +
+                ",\nmusicStyle: " + musicStyle.toString().toLowerCase();
     }
 }

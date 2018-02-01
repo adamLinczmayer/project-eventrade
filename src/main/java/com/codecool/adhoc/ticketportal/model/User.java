@@ -20,15 +20,6 @@ import java.util.Set;
         )
 })
 public class User {
-    @Override
-    public String toString() {
-        return "\nUser" +
-                "\nid=" + id +
-                "\nuserName='" + userName +
-                "\nemail='" + email +
-                "\nfullName='" + fullName +
-                "\nuserType=" + userType;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +51,7 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String fullName, UserType userType, Cart cart, Set<Order> orders) {
+    public User(String userName, String email, String fullName, UserType userType, Cart cart) {
         this.fullName = fullName;
         this.userName = userName;
         this.email = email;
@@ -143,5 +134,15 @@ public class User {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    @Override
+    public String toString() {
+        return "User:" +
+                "\nid: " + id +
+                ",\nuserName: " + userName +
+                ",\nemail: " + email +
+                ",\nfullName: " + fullName +
+                ",\nuserType: " + userType;
     }
 }

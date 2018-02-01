@@ -56,13 +56,21 @@ public class Event {
         bands.add(band);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "\nEvent" +
-                "\nid=" + id +
-                "\nname=" + name +
-                "\nbands=" + bands +
-                "\nlocation=" + location +
-                "\ndate=" + date;
+        return "Event:" +
+                "\nid: " + id +
+                ",\nname: " + name +
+                ",\nbands: " + bands +
+                ",\nlocation: " + location +
+                ",\ndate: " + date;
     }
 }

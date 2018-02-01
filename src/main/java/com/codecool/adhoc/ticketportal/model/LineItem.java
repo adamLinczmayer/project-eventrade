@@ -74,10 +74,9 @@ public class LineItem {
 
     @Override
     public String toString() {
-        return "\nLineItem{" +
-                "\nid=" + id +
-                "\nticket=" + ticket +
-                "\nquantity=" + quantity +
-                '}';
+        return "LineItem: " +
+                "\nid:" + id +
+                "\nticket: " + ticket.getEvent().getName() + " " + ticket.getTicketType() +
+                "\nquantity: " + quantity;
     }
 }

@@ -68,6 +68,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "user= " + users.getFullName() + ", status=" + status;
+        return "user: " + users.getFullName() +
+                ",\nstatus: " + status;
     }
 }

@@ -69,10 +69,10 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "\nTicket" +
-                "\nid=" + id +
-                "\nevent=" + event +
-                "\nprice=" + price +
-                "\nticketType=" + ticketType;
+        return "Ticket" +
+                "\nid: " + id +
+                "\nevent: " + event.getName() +
+                "\nprice: " + price +
+                "\nticketType: " + ticketType.toString().toLowerCase();
     }
 }
