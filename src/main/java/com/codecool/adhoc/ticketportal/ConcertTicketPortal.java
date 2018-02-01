@@ -27,6 +27,16 @@ public class ConcertTicketPortal {
         populateOrderDB(em);
         populateCartDB(em);
 
+        List<Ticket> allTickets = em.createNamedQuery(
+                "Ticket.findAllTickets", Ticket.class)
+                .getResultList();
+        System.out.println(allTickets);
+
+        List<User> allUsers = em.createNamedQuery(
+                "User.findAllUsers", User.class)
+                .getResultList();
+        System.out.println(allUsers);
+
         em.close();
         emf.close();
     }
