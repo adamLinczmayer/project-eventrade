@@ -29,22 +29,7 @@ public class ConcertTicketPortal {
                 case 7: chosenMenuOption = 0;
             }
         }
-        /*System.out.print("\033[H\033[2J");
-
-        System.out.println(em.createNamedQuery("Event.findAllEvents", Event.class).getResultList());
-
-        System.out.println(em.createNamedQuery("User.findAllUsers", User.class).getResultList());
-
-        System.out.println(em.createNamedQuery("Ticket.findAllTickets", Ticket.class).getResultList());
-
-        System.out.println(em.createNamedQuery("LineItem.findAllLineItems", LineItem.class).getResultList());
-
-        System.out.println(em.createNamedQuery("Band.findAllBands", Band.class).getResultList());
-
-        System.out.println(em.createNamedQuery("Location.findByName", Location.class).setParameter("name", "%"+"Code"+"%").getResultList());
-
-        System.out.println(em.createNamedQuery("Cart.findAllCarts", Cart.class).getResultList());*/
-
+        
         em.close();
         emf.close();
     }
