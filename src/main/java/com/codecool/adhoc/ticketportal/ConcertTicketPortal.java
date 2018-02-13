@@ -17,18 +17,6 @@ import static spark.Spark.*;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
-        // default server settings
-        exception(Exception.class, (e, req, res) -> e.printStackTrace());
-        staticFileLocation("/public");
-        port(8888);
-
-        // Always start with more specific routes
-        get("/hello", (req, res) -> "Hello World");
-
-        get("/index", (Request req, Response res) -> {
-            return new ThymeleafTemplateEngine().render( ProductController.renderEvents(req, res) );
-        });
-
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
         EntityManager em = emf.createEntityManager();
@@ -51,15 +39,13 @@ public class ConcertTicketPortal {
         em.close();
         emf.close();
 
-        // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFileLocation("/");
         port(8888);
 
-        // Always start with more specific routes
         get("/hello", (req, res) -> "Hello World");
 
-
+        get("/index", (Request req, Response res) -> new ThymeleafTemplateEngine().render(ProductController.renderEvents(req, res)));
     }
 
     private static void populateDB(EntityManager entityManager){
