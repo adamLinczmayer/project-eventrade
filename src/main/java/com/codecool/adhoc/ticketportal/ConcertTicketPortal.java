@@ -1,10 +1,14 @@
 package com.codecool.adhoc.ticketportal;
 
+import com.codecool.adhoc.ticketportal.controller.ProductController;
 import com.codecool.adhoc.ticketportal.model.*;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
+import spark.Request;
+import spark.Response;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import javax.persistence.*;
 import java.util.*;
@@ -20,6 +24,10 @@ public class ConcertTicketPortal {
 
         // Always start with more specific routes
         get("/hello", (req, res) -> "Hello World");
+
+        get("/index", (Request req, Response res) -> {
+            return new ThymeleafTemplateEngine().render( ProductController.renderEvents(req, res) );
+        });
 
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
