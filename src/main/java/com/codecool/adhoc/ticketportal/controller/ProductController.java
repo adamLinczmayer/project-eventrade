@@ -4,12 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.HashMap;
+public interface ProductController {
 
-public class ProductController {
-    public static ModelAndView renderEvents(Request req, Response res) {
-        //TODO
-        // Create hashMap with all events with their name, location and date
-        return new ModelAndView(new HashMap<>(), "all_events");
-    }
+    ModelAndView renderEvents(Request request, Response response);
 }

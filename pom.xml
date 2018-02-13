@@ -90,11 +90,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf</artifactId>
-            <version>3.0.9.RELEASE</version>
-        </dependency>
-        <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-template-thymeleaf</artifactId>
             <version>2.3</version>
