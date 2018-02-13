@@ -9,12 +9,19 @@ import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import javax.persistence.*;
 import java.util.*;
 
-import static spark.Spark.exception;
-import static spark.Spark.port;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
+        // default server settings
+        exception(Exception.class, (e, req, res) -> e.printStackTrace());
+        staticFileLocation("/public");
+        port(8888);
+
+        // Always start with more specific routes
+        get("/hello", (req, res) -> "Hello World");
+
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
         EntityManager em = emf.createEntityManager();
 
@@ -42,6 +49,8 @@ public class ConcertTicketPortal {
         staticFileLocation("/");
         port(8888);
 
+        // Always start with more specific routes
+        get("/hello", (req, res) -> "Hello World");
 
 
     }
