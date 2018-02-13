@@ -2,6 +2,7 @@ package com.codecool.adhoc.ticketportal.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,9 +25,8 @@ public class Location {
     @Column(nullable = false)
     private Integer capacity;
 
-    @OneToOne(mappedBy = "location")
-    @Transient
-    private Event event;
+    @OneToMany(mappedBy = "location")
+    private List<Event> event;
 
     public Location() {
     }

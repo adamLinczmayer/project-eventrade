@@ -2,27 +2,13 @@ package com.codecool.adhoc.ticketportal.model;
 
 import javax.persistence.*;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(
-                name = "LineItem.findAllLineItems",
-                query = "SELECT li FROM LineItem li ")
-})
+@Embeddable
 public class LineItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @OneToOne
     private Ticket ticket;
 
     @ManyToOne
-    @Transient
-    private Cart cart;
-
-    @ManyToOne
-    @Transient
     private Order order;
 
     private Integer quantity;
@@ -30,18 +16,9 @@ public class LineItem {
     public LineItem() {
     }
 
-    public LineItem(Ticket ticket, Cart cart, Integer quantity) {
+    public LineItem(Ticket ticket, Integer quantity) {
         this.ticket = ticket;
-        this.cart = cart;
         this.quantity = quantity;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public Order getOrder() {
@@ -50,10 +27,6 @@ public class LineItem {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public Ticket getTicket() {
@@ -75,7 +48,6 @@ public class LineItem {
     @Override
     public String toString() {
         return "LineItem: " +
-                "\nid:" + id +
                 "\nticket: " + ticket.getEvent().getName() + " " + ticket.getTicketType() +
                 "\nquantity: " + quantity;
     }
