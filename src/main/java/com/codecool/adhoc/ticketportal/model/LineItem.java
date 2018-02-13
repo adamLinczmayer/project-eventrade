@@ -19,10 +19,6 @@ public class LineItem {
 
     @ManyToOne
     @Transient
-    private Cart cart;
-
-    @ManyToOne
-    @Transient
     private Order order;
 
     private Integer quantity;
@@ -30,18 +26,9 @@ public class LineItem {
     public LineItem() {
     }
 
-    public LineItem(Ticket ticket, Cart cart, Integer quantity) {
+    public LineItem(Ticket ticket, Integer quantity) {
         this.ticket = ticket;
-        this.cart = cart;
         this.quantity = quantity;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public Order getOrder() {

@@ -43,9 +43,8 @@ public class ConcertTicketPortal {
         event.addBand(band2);
         Ticket ticket1 = new Ticket(event, 200f, TicketType.NORMAL);
         Ticket ticket2 = new Ticket(event, 100f, TicketType.STUDENT);
-        Cart cart = new Cart();
-        User user = new User("Jancsika", "j@email.com", "Kukorica Jancsi", UserType.BUYER, cart);
-        LineItem lineItem = new LineItem(ticket1, cart, 1);
+        User user = new User("Jancsika", "j@email.com", "Kukorica Jancsi", UserType.BUYER);
+        LineItem lineItem = new LineItem(ticket1, 1);
         Order order = new Order(user, new HashSet<>(Arrays.asList(lineItem)), OrderStatus.NEW);
 
         EntityTransaction transaction = entityManager.getTransaction();
@@ -57,7 +56,6 @@ public class ConcertTicketPortal {
         entityManager.persist(event);
         entityManager.persist(ticket1);
         entityManager.persist(ticket2);
-        entityManager.persist(cart);
         entityManager.persist(user);
         entityManager.persist(lineItem);
         entityManager.persist(order);
