@@ -20,17 +20,18 @@ public class Order {
 
     @ManyToOne
     private User users;
-    @OneToMany
+
+    @ElementCollection
     private Set<LineItem> lineItems;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     public Order() {
     }
 
-    public Order(User user, Set<LineItem> lineItems, OrderStatus status) {
+    public Order(User user, OrderStatus status) {
         this.users = user;
-        this.lineItems = lineItems;
         this.status = status;
     }
 

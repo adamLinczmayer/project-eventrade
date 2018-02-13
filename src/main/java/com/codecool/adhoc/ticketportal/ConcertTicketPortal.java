@@ -25,7 +25,6 @@ public class ConcertTicketPortal {
                 case 3: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Location.findByName", Location.class).setParameter("name", "%"+"Code"+"%").getResultList()); break;
                 case 4: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Event.findAllEvents", Event.class).getResultList()); break;
                 case 5: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Ticket.findAllTickets", Ticket.class).getResultList()); break;
-                case 6: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("LineItem.findAllLineItems", LineItem.class).getResultList()); break;
                 case 7: chosenMenuOption = 0;
             }
         }
@@ -44,8 +43,7 @@ public class ConcertTicketPortal {
         Ticket ticket1 = new Ticket(event, 200f, TicketType.NORMAL);
         Ticket ticket2 = new Ticket(event, 100f, TicketType.STUDENT);
         User user = new User("Jancsika", "j@email.com", "Kukorica Jancsi", UserType.BUYER);
-        LineItem lineItem = new LineItem(ticket1, 1);
-        Order order = new Order(user, new HashSet<>(Arrays.asList(lineItem)), OrderStatus.NEW);
+        Order order = new Order(user, OrderStatus.CART);
 
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
@@ -57,7 +55,6 @@ public class ConcertTicketPortal {
         entityManager.persist(ticket1);
         entityManager.persist(ticket2);
         entityManager.persist(user);
-        entityManager.persist(lineItem);
         entityManager.persist(order);
         transaction.commit();
     }
