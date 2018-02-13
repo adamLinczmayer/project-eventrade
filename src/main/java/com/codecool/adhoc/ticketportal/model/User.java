@@ -25,9 +25,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private Cart cart;
-
     @OneToMany(mappedBy = "users")
     private Set<Order> orders = new HashSet<>();
 
@@ -51,12 +48,11 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String fullName, UserType userType, Cart cart) {
+    public User(String userName, String email, String fullName, UserType userType) {
         this.fullName = fullName;
         this.userName = userName;
         this.email = email;
         this.userType = userType;
-        this.cart = cart;
         this.orders = orders;
     }
 
@@ -126,14 +122,6 @@ public class User {
 
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     @Override
