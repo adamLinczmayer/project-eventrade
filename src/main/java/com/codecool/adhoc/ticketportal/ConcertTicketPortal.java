@@ -27,7 +27,7 @@ public class ConcertTicketPortal {
 
         em.close();
         emf.close();
-        ProductController productController = new ThymeleafProductController();
+        ProductController productController = new ThymeleafProductController(em);
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFileLocation("/public");
         port(8888);
