@@ -19,7 +19,7 @@ public class Event {
     @ManyToMany
     @JoinTable(name = "event_bands")
     private Set<Band> bands = new HashSet<>();
-    @OneToOne
+    @ManyToOne
     private Location location;
     private Date date;
 
