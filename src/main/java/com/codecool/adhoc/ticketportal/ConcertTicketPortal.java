@@ -1,36 +1,41 @@
 package com.codecool.adhoc.ticketportal;
 
+import com.codecool.adhoc.ticketportal.controller.ProductController;
+import com.codecool.adhoc.ticketportal.controller.implementation.ThymeleafProductController;
 import com.codecool.adhoc.ticketportal.model.*;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
+import spark.Request;
+import spark.Response;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import javax.persistence.*;
 import java.util.*;
 
+import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
+
 public class ConcertTicketPortal {
     public static void main(String[] args) {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
         EntityManager em = emf.createEntityManager();
 
         populateDB(em);
-        Scanner userInput = new Scanner(System.in);
-        Integer chosenMenuOption = null;
-        while(chosenMenuOption == null){
-            int input = userInput.nextInt();
-            switch (input){
-                case 1: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("User.findAllUsers", User.class).getResultList()); break;
-                case 2: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Band.findAllBands", Band.class).getResultList()); break;
-                case 3: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Location.findByName", Location.class).setParameter("name", "%"+"Code"+"%").getResultList()); break;
-                case 4: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Event.findAllEvents", Event.class).getResultList()); break;
-                case 5: System.out.print("\033[H\033[2J"); System.out.println(em.createNamedQuery("Ticket.findAllTickets", Ticket.class).getResultList()); break;
-                case 7: chosenMenuOption = 0;
-            }
-        }
-        
-        em.close();
-        emf.close();
+
+
+        ProductController productController = new ThymeleafProductController(em);
+        exception(Exception.class, (e, req, res) -> e.printStackTrace());
+        staticFileLocation("/public");
+        port(8888);
+
+        get("/hello", (req, res) -> "Hello World");
+
+        get("/index", (req, res) -> new ThymeleafTemplateEngine().render(productController.renderEvents(req, res)));
+
+        enableDebugScreen();
     }
 
     private static void populateDB(EntityManager entityManager){
