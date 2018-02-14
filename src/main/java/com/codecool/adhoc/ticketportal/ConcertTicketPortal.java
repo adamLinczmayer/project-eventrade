@@ -7,21 +7,19 @@ import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
-import spark.Request;
-import spark.Response;
+import com.codecool.adhoc.ticketportal.utility.DatabaseTool;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import java.util.Date;
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
-        EntityManager em = emf.createEntityManager();
+        DatabaseTool databaseTool = new DatabaseTool("adhocPU");
+        EntityManager em = databaseTool.getEm();
 
         populateDB(em);
 
