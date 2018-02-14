@@ -2,6 +2,7 @@ package com.codecool.adhoc.ticketportal.controller.implementation;
 
 import com.codecool.adhoc.ticketportal.controller.ProductController;
 import com.codecool.adhoc.ticketportal.model.Event;
+import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -31,11 +32,14 @@ public class ThymeleafProductController implements ProductController{
         return new ModelAndView(params, "all_events");
     }
 
-    public ModelAndView renderEventPage(Request reg, Response res) throws NumberFormatException {
+    public ModelAndView renderEventPage(Request reg, Response res) throws NumberFormatException, NoObjectInDatabaseException {
         Long id;
         id = parseLong(reg.params(":id"));
         Event event = em.find(Event.class, id);
         Map<String, Object> params = new HashMap<>();
+        if (event == null) {
+            throw new NoObjectInDatabaseException(" This event not exist.");
+        }
         params.put("event", event);
         return  new ModelAndView(params, "event_page");
     }

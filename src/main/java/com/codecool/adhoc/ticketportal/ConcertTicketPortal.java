@@ -7,6 +7,7 @@ import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
+import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import javax.persistence.EntityManager;
@@ -42,6 +43,9 @@ public class ConcertTicketPortal {
             } catch (NumberFormatException e) {
                 res.status(404);
                 return res.raw().getStatus();
+            } catch (NoObjectInDatabaseException e) {
+                res.status(404);
+                return res.raw().getStatus() + e.getMessage();
             }
         });
 
