@@ -12,7 +12,7 @@
             <div class="events" th:each="event, iterStat : ${events}">
                 <div class="event">
                     <div class="event-image">
-                        <img src="http://placehold.it/400x250/000/fff" alt=""/>
+                        <img width="250" src="http://placehold.it/400x250/000/fff" alt=""/>
                         <!--th:attr="src='img/event/event_' + ${event.getId} + '.jpg'"-->
                     </div>
                     <div class="event-name" th:text="${event.getName()}">event name</div>
