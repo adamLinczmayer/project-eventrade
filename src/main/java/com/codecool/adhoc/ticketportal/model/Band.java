@@ -15,7 +15,11 @@ import java.util.Set;
         @NamedQuery(
                 name="Band.findBandByName",
                 query = "SELECT b FROM Band b " +
-                        "WHERE b.name LIKE :bandName")
+                        "WHERE b.name LIKE :bandName"),
+        @NamedQuery(
+                name="Band.findBandsByMusicStyle",
+                query = "SELECT b FROM Band b " +
+                        "WHERE b.musicStyle = :musicStyle")
 })
 public class Band {
     @Id
