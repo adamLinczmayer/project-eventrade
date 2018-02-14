@@ -22,15 +22,19 @@ public class Event {
     @ManyToOne
     private Location location;
     private Date date;
+    private String description;
 
     public Event() {
     }
 
-    public Event(String name, Location location, Date date) {
+    public Event(String name, Location location, Date date, String description) {
         this.name = name;
         this.location = location;
         this.date = date;
+        this.description = description;
     }
+
+    public Long getId() { return id; }
 
     public Location getLocation() {
         return location;
@@ -63,6 +67,10 @@ public class Event {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     @Override
     public String toString() {

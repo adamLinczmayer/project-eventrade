@@ -7,4 +7,6 @@ import spark.Response;
 public interface ProductController {
 
     ModelAndView renderEvents(Request request, Response response);
+
+    ModelAndView renderEventPage(Request request, Response response);
 }

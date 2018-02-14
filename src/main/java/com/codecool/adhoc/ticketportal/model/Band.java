@@ -25,12 +25,15 @@ public class Band {
     @ManyToMany(mappedBy = "bands")
     private Set<Event> events = new HashSet<>();
 
+    private String description;
+
     public Band() {
     }
 
-    public Band(String name, MusicStyle musicStyle) {
+    public Band(String name, MusicStyle musicStyle, String description) {
         this.name = name;
         this.musicStyle = musicStyle;
+        this.description = description;
     }
 
     public String getName() {
@@ -48,6 +51,10 @@ public class Band {
     public void setStyle(MusicStyle musicStyle) {
         this.musicStyle = musicStyle;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     @Override
     public String toString() {
