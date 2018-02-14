@@ -54,10 +54,13 @@ public class ConcertTicketPortal {
         Band band2 = new Band("Bunyós Pityu", MusicStyle.ROLLICKING, "Gyere ki a hóra");
         Location location1 = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
         Location location2 = new Location("Lakas", "Leninvaros, Panel u. 43421.", 5);
-        Event event = new Event("Bunyós Pityu Hazibuli", location2, new Date(1600, 13, 32), "Gyere ki a hóra koncert");
-        event.addBand(band2);
-        Ticket ticket1 = new Ticket(event, 200f, TicketType.NORMAL);
-        Ticket ticket2 = new Ticket(event, 100f, TicketType.STUDENT);
+
+        Event event1 = new Event("Bunyós Pityu Hazibuli", location2, new Date(1600, 13, 32), "asd");
+        Event event2 = new Event("Lakodalom Lajossal", location2, new Date(3330, 13, 32), "asd");
+        event1.addBand(band2);
+        event2.addBand(band1);
+        Ticket ticket1 = new Ticket(event1, 200f, TicketType.NORMAL);
+        Ticket ticket2 = new Ticket(event1, 100f, TicketType.STUDENT);
         User user = new User("Jancsika", "j@email.com", "Kukorica Jancsi", UserType.BUYER);
         Order order = new Order(user, OrderStatus.CART);
 
@@ -67,7 +70,8 @@ public class ConcertTicketPortal {
         entityManager.persist(band2);
         entityManager.persist(location1);
         entityManager.persist(location2);
-        entityManager.persist(event);
+        entityManager.persist(event1);
+        entityManager.persist(event2);
         entityManager.persist(ticket1);
         entityManager.persist(ticket2);
         entityManager.persist(user);

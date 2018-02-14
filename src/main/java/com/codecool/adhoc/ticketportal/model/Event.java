@@ -1,9 +1,7 @@
 package com.codecool.adhoc.ticketportal.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @NamedQueries({
@@ -18,7 +16,7 @@ public class Event {
     private String name;
     @ManyToMany
     @JoinTable(name = "event_bands")
-    private Set<Band> bands = new HashSet<>();
+    private List<Band> bands = new ArrayList<>();
     @ManyToOne
     private Location location;
     private Date date;
@@ -52,7 +50,7 @@ public class Event {
         this.date = date;
     }
 
-    public Set<Band> getBands() {
+    public List<Band> getBands() {
         return bands;
     }
 
