@@ -53,7 +53,7 @@ class LocationTest {
     @Test
     void findLocationsByName() {
         List<Location> results = em.createNamedQuery("Location.findByName", Location.class)
-                .setParameter("name", "%" + "testLocation" + "%").getResultList();
+                .setParameter("name", "%testLocation%").getResultList();
         List<String> expectedResultsName = Arrays.asList("testLocation1", "testLocation2");
         assertTrue(results.get(0).getName().equals(expectedResultsName.get(0)));
         assertTrue(results.get(1).getName().equals(expectedResultsName.get(1)));
@@ -62,7 +62,7 @@ class LocationTest {
     @Test
     void findLocationsByAddress() {
         List<Location> results = em.createNamedQuery("Location.findByAddress", Location.class)
-                .setParameter("address", "%" + "testAddress" + "%").getResultList();
+                .setParameter("address", "%testAddress%").getResultList();
         List<String> expectedResultsName = Arrays.asList("testLocation1", "testLocation2");
         assertTrue(results.get(0).getName().equals(expectedResultsName.get(0)));
         assertTrue(results.get(1).getName().equals(expectedResultsName.get(1)));
