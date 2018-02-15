@@ -1,9 +1,9 @@
 package com.codecool.adhoc.ticketportal.model;
 
+import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import com.codecool.adhoc.ticketportal.utility.DatabaseTool;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
@@ -12,34 +12,26 @@ import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class UserTest {
-
+public class OrderTest {
     private static DatabaseTool databaseTool = new DatabaseTool("testAdhocPU");
     private static EntityManager em = databaseTool.getEm();
 
     @BeforeAll
     static void populateDB() throws ParseException {
-        User testUser1 = new User("testUser1", "test1@mail.com", "Test User1", UserType.BUYER);
-        User testUser2 = new User("testUser2", "test2@mail.com", "Test User2", UserType.BUYER);
-        User testUser3 = new User("testUser3", "test3@mail.com", "Test User3", UserType.SELLER);
+        User testUser = new User();
+        Order testOrder = new Order(testUser, OrderStatus.CHECKOUT);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
-        em.persist(testUser1);
-        em.persist(testUser2);
-        em.persist(testUser3);
+        em.persist(testUser);
+        em.persist(testOrder);
         transaction.commit();
     }
 
     @Test
-    void testFindUserById() {
-        User user = em.find(User.class, 1L);
-        assertTrue(user.getUserName().equals("testUser1"));
-    }
+    void testFindOrderById() {
+        Order order = em.find(Order.class, 1L);
+        assertTrue(order.equals(t));
 
-    @Test
-    void testFindAllUsers() {
-        assertTrue(em.createNamedQuery("User.findAllUsers").getResultList().size() == 3);
     }
-
 }
