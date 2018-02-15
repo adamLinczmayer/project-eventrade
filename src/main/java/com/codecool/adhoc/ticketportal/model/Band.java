@@ -9,9 +9,17 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(
-        name = "Band.findAllBands",
-        query = "SELECT b FROM Band b " +
-                "ORDER BY b.id"),
+                name = "Band.findAllBands",
+                query = "SELECT b FROM Band b " +
+                        "ORDER BY b.id"),
+        @NamedQuery(
+                name="Band.findBandByName",
+                query = "SELECT b FROM Band b " +
+                        "WHERE b.name LIKE :bandName"),
+        @NamedQuery(
+                name="Band.findBandsByMusicStyle",
+                query = "SELECT b FROM Band b " +
+                        "WHERE b.musicStyle = :musicStyle")
 })
 public class Band {
     @Id

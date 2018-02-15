@@ -7,21 +7,28 @@ import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
-import com.codecool.adhoc.ticketportal.utility.DatabaseTool;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import java.util.Date;
+import javax.persistence.Persistence;
+import java.text.ParseException;
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
-        DatabaseTool databaseTool = new DatabaseTool("adhocPU");
-        EntityManager em = databaseTool.getEm();
 
-        populateDB(em);
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
+        EntityManager em = emf.createEntityManager();
+        try {
+            populateDB(em);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
 
 
         ProductController productController = new ThymeleafProductController(em);
@@ -36,12 +43,12 @@ public class ConcertTicketPortal {
         enableDebugScreen();
     }
 
-    private static void populateDB(EntityManager entityManager){
+    private static void populateDB(EntityManager entityManager) throws ParseException{
         Band band1 = new Band("Lakodalmas Lajos" , MusicStyle.ROLLICKING);
         Band band2 = new Band("Bunyós Pityu" , MusicStyle.ROLLICKING);
         Location location1 = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
         Location location2 = new Location("Lakas", "Leninvaros, Panel u. 43421.", 5);
-        Event event = new Event("Bunyós Pityu Hazibuli", location2, new Date(1600, 13, 32));
+        Event event = new Event("Bunyós Pityu Hazibuli", location2, "2018-02-28-18:00");
         event.addBand(band2);
         Ticket ticket1 = new Ticket(event, 200f, TicketType.NORMAL);
         Ticket ticket2 = new Ticket(event, 100f, TicketType.STUDENT);
