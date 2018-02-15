@@ -3,16 +3,12 @@ package com.codecool.adhoc.ticketportal.model;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.utility.DatabaseTool;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TicketTest {
@@ -22,7 +18,7 @@ class TicketTest {
     private static Ticket ticket1;
 
     @BeforeAll
-    static void populateDB(){
+    static void populateDB() {
         Event event1 = new Event();
         ticket1 = new Ticket(event1, 2500f, TicketType.NORMAL);
         Ticket ticket2 = new Ticket(event1, 2500f, TicketType.NORMAL);
