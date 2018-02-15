@@ -24,9 +24,6 @@ public class ThymeleafProductController implements ProductController{
     }
 
     public  ModelAndView renderEvents(Request req, Response res) {
-        //TODO
-        // Create hashMap with all events with their name, location and date
-
         List<Event> events = em.createNamedQuery("Event.findAllEvents", Event.class).getResultList();
         Map<String, Object> params = new HashMap<>();
         params.put("events", events);
@@ -42,7 +39,6 @@ public class ThymeleafProductController implements ProductController{
             throw new NoObjectInDatabaseException(" This event not exist.");
         }
         params.put("event", event);
-        System.out.println("Here are the params: " + params);
         return  new ModelAndView(params, "event_page");
     }
 

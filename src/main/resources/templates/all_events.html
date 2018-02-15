@@ -12,14 +12,14 @@
             <div class="events" th:each="event, iterStat : ${events}">
                 <div class="event">
                     <div class="event-image">
-                        <a th:href="'/event/' + ${event.getId()}">
-                            <img width="250" src="http://placehold.it/400x250/000/fff" alt=""/>
-                            <!--th:attr="src='img/event/event_' + ${event.getId()} + '.jpg'"-->
+                        <a th:href="'/event/' + ${event.id}">
+                            <img width="250" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
                         </a>
                     </div>
                     <div class="event-name" th:text="${event.getName()}">event name</div>
                     <div class="event-date" th:text="${event.getDate()}">event date</div>
                     <div class="event-location" th:text="${event.getLocation().getName()}">event location</div>
+                    <br/>
                 </div>
             </div>
         </div>

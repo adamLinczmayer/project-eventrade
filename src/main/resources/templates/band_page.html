@@ -7,11 +7,14 @@
     <body>
         <div class="container">
             <div class="960">
-                <h1>EVENT PAGE</h1>
+                <br/>
+                <a href="/events">Home</a>
+                <br/>
+                <h1>BAND PAGE</h1>
                 <div class="img-and-info band-img-and-info">
                     <div class="detail-page-image band-image">
-                        <img width="500" src="http://placehold.it/400x250/000/fff" alt=""/>
-                        <!--th:attr="src='img/band/band_' + ${bandObject.getId()} + '.jpg'"-->
+                        <img width="300px" th:attr="src='/img/band/band_' + ${bandObject.id} + '.jpg'" alt="band picture"/>
+
                     </div>
                     <div class="detail-page-info band-info" >
                         <div class="band-name info-row" th:text="${bandObject.name}">band name</div>

@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
 
-
 @Entity
 @NamedQueries({
         @NamedQuery(
@@ -36,6 +35,7 @@ public class Event {
 
     public Event() {
     }
+
 
     public Event(String name, Location location, String date, String description) throws ParseException{
         this.name = name;
