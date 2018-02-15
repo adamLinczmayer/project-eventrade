@@ -77,6 +77,7 @@ public class Event {
                 ",\nname: " + name +
                 ",\nbands: " + bands +
                 ",\nlocation: " + location +
-                ",\ndate: " + date;
+                ",\ndate: " + date +
+                ",\ndescription: " + description;
     }
 }

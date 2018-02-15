@@ -48,11 +48,11 @@ public class Band {
         this.name = name;
     }
 
-    public MusicStyle getStyle() {
+    public MusicStyle getMusicStyle() {
         return musicStyle;
     }
 
-    public void setStyle(MusicStyle musicStyle) {
+    public void setMusicStyle(MusicStyle musicStyle) {
         this.musicStyle = musicStyle;
     }
 
@@ -65,6 +65,7 @@ public class Band {
         return "Band: " +
                 "\nid: " + id +
                 ",\nname: '" + name + '\'' +
-                ",\nmusicStyle: " + musicStyle.toString().toLowerCase();
+                ",\nmusicStyle: " + musicStyle.toString().toLowerCase() +
+                ",\ndescription: " + description;
     }
 }

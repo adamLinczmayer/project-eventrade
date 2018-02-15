@@ -1,6 +1,7 @@
 package com.codecool.adhoc.ticketportal.controller.implementation;
 
 import com.codecool.adhoc.ticketportal.controller.ProductController;
+import com.codecool.adhoc.ticketportal.model.Band;
 import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import spark.ModelAndView;
@@ -41,6 +42,19 @@ public class ThymeleafProductController implements ProductController{
             throw new NoObjectInDatabaseException(" This event not exist.");
         }
         params.put("event", event);
+        System.out.println("Here are the params: " + params);
         return  new ModelAndView(params, "event_page");
+    }
+
+    public ModelAndView renderBandPage(Request reg, Response res) throws NumberFormatException, NoObjectInDatabaseException {
+        Long id;
+        id = parseLong(reg.params(":id"));
+        Band band = em.find(Band.class, id);
+        Map<String, Object> params = new HashMap<>();
+        if (band == null) {
+            throw new NoObjectInDatabaseException(" This band not exist.");
+        }
+        params.put("bandObject", band);
+        return  new ModelAndView(params, "band_page");
     }
 }

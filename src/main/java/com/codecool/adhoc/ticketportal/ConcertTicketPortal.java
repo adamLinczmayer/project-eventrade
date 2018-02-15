@@ -35,7 +35,19 @@ public class ConcertTicketPortal {
 
         get("/hello", (req, res) -> "Hello World");
 
-        get("/index", (req, res) -> new ThymeleafTemplateEngine().render(productController.renderEvents(req, res)));
+        get("/events", (req, res) -> new ThymeleafTemplateEngine().render(productController.renderEvents(req, res)));
+
+        get("/band/:id", (req, res) -> {
+            try {
+                return new ThymeleafTemplateEngine().render(productController.renderBandPage(req, res));
+            } catch (NumberFormatException e) {
+                res.status(404);
+                return res.raw().getStatus();
+            } catch (NoObjectInDatabaseException e) {
+                res.status(404);
+                return res.raw().getStatus() + e.getMessage();
+            }
+        });
 
         get("/event/:id", (req, res) -> {
             try {

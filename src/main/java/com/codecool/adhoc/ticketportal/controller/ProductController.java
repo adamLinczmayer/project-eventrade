@@ -10,4 +10,6 @@ public interface ProductController {
     ModelAndView renderEvents(Request request, Response response);
 
     ModelAndView renderEventPage(Request request, Response response) throws NoObjectInDatabaseException;
+
+    ModelAndView renderBandPage(Request request, Response response) throws NoObjectInDatabaseException;
 }
