@@ -9,18 +9,17 @@ import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.text.ParseException;
-
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class ConcertTicketPortal {
     public static void main(String[] args) {
+
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("adhocPU");
         EntityManager em = emf.createEntityManager();
@@ -29,6 +28,7 @@ public class ConcertTicketPortal {
         }catch (ParseException e){
             e.printStackTrace();
         }
+
 
         ProductController productController = new ThymeleafProductController(em);
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
@@ -67,6 +67,7 @@ public class ConcertTicketPortal {
         enableDebugScreen();
     }
 
+
     private static void populateDB(EntityManager entityManager) throws ParseException {
         Band band1 = new Band("Lakodalmas Lajos", MusicStyle.ROLLICKING, "Támogatónk az E.ON! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet. Sed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
         Band band2 = new Band("Bunyós Pityu", MusicStyle.ROLLICKING, "Gyere ki a hóra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet. Sed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
@@ -76,7 +77,6 @@ public class ConcertTicketPortal {
         Location location1 = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
         Location location2 = new Location("Lakas", "Leninvaros, Panel u. 43421.", 5);
         Location location3 = new Location("Zúzda", "1011, Bp, Rúgdkiaházoldalát u. 42.", 150);
-
         Event event1 = new Event("Bunyós Pityu Hazibuli", location2, "2018-02-28-18:00", "Itt ugassál!");
         Event event2 = new Event("Lakodalom Lajossal", location2, "2019-02-28-18:00", "Az áram is belédcsap, olyan buli lesz");
         Event event3 = new Event("Rock or Bust World Tour", location2, "2018-02-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014.");

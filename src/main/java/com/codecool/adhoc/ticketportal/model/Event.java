@@ -42,6 +42,7 @@ public class Event {
         this.location = location;
         this.date = simpleDateFormat.parse(date);
         this.description = description;
+
     }
 
     public Long getId() { return id; }

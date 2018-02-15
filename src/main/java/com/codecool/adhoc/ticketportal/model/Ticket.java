@@ -75,4 +75,17 @@ public class Ticket {
                 "\nprice: " + price +
                 "\nticketType: " + ticketType.toString().toLowerCase();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        if (id != null ? !id.equals(ticket.id) : ticket.id != null) return false;
+        if (event != null ? !event.equals(ticket.event) : ticket.event != null) return false;
+        if (price != null ? !price.equals(ticket.price) : ticket.price != null) return false;
+        return ticketType == ticket.ticketType;
+    }
 }
