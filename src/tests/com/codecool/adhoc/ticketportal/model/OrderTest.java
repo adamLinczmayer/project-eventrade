@@ -16,10 +16,12 @@ public class OrderTest {
     private static DatabaseTool databaseTool = new DatabaseTool("testAdhocPU");
     private static EntityManager em = databaseTool.getEm();
 
+    private static Order testOrder;
+
     @BeforeAll
     static void populateDB() throws ParseException {
         User testUser = new User();
-        Order testOrder = new Order(testUser, OrderStatus.CHECKOUT);
+        testOrder = new Order(testUser, OrderStatus.CHECKOUT);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
@@ -31,7 +33,6 @@ public class OrderTest {
     @Test
     void testFindOrderById() {
         Order order = em.find(Order.class, 1L);
-        assertTrue(order.equals(t));
-
+        assertTrue(order.equals(testOrder));
     }
 }
