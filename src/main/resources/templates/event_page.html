@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Event Page</title>
 </head>
 <body>
-    <h1>EVENT PAGE</h1>
+    <div class="container">
+        <div class="960">
+            <br/>
+            <a href="/events">Home</a>
+            <br/>
+            <h1>EVENT PAGE</h1>
+            <div class="img-and-info event-img-and-info">
+                <div class="detail-page-image event-image">
+                    <img width="500px" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
+
+                </div>
+                <div class="detail-page-info event-info">
+                    <div class="event-name info-row" th:text="${event.name}">event name</div>
+                    <div class="event-date info-row" th:text="${event.date}">event date</div>
+                    <div class="event-location info-row" th:text="${event.location.name}">event location</div>
+                    <div class="event-bands info-row">
+                        <div class="event-band" th:each="banda : ${event.bands}">
+                            <a th:href="'/band/' + ${banda.id}" th:text="${banda.name}">band</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-page-description"></div>
+        </div>
+    </div>
 </body>
 </html>

@@ -33,12 +33,19 @@ public class Band {
     @ManyToMany(mappedBy = "bands")
     private Set<Event> events = new HashSet<>();
 
+    private String description;
+
     public Band() {
     }
 
-    public Band(String name, MusicStyle musicStyle) {
+    public Band(String name, MusicStyle musicStyle, String description) {
         this.name = name;
         this.musicStyle = musicStyle;
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -49,19 +56,24 @@ public class Band {
         this.name = name;
     }
 
-    public MusicStyle getStyle() {
+    public MusicStyle getMusicStyle() {
         return musicStyle;
     }
 
-    public void setStyle(MusicStyle musicStyle) {
+    public void setMusicStyle(MusicStyle musicStyle) {
         this.musicStyle = musicStyle;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     @Override
     public String toString() {
         return "Band: " +
                 "\nid: " + id +
                 ",\nname: '" + name + '\'' +
-                ",\nmusicStyle: " + musicStyle.toString().toLowerCase();
+                ",\nmusicStyle: " + musicStyle.toString().toLowerCase() +
+                ",\ndescription: " + description;
     }
 }

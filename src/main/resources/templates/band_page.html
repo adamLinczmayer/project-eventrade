@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
         <title>Band Page</title>
     </head>
     <body>
-        <h1>BAND PAGE</h1>
+        <div class="container">
+            <div class="960">
+                <br/>
+                <a href="/events">Home</a>
+                <br/>
+                <h1>BAND PAGE</h1>
+                <div class="img-and-info band-img-and-info">
+                    <div class="detail-page-image band-image">
+                        <img width="300px" th:attr="src='/img/band/band_' + ${bandObject.id} + '.jpg'" alt="band picture"/>
+
+                    </div>
+                    <div class="detail-page-info band-info" >
+                        <div class="band-name info-row" th:text="${bandObject.name}">band name</div>
+                        <div class="band-genres info-row">
+                            <a href="" class="band-genres" th:text="${bandObject.musicStyle}">band genre</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-page-description"></div>
+            </div>
+        </div>
     </body>
 </html>
