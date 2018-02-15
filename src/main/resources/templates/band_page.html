@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8"/>
         <title>Band Page</title>
@@ -11,12 +11,12 @@
                 <div class="img-and-info band-img-and-info">
                     <div class="detail-page-image band-image">
                         <img width="500" src="http://placehold.it/400x250/000/fff" alt=""/>
-                        <!--th:attr="src='img/band/band_' + ${band.getId()} + '.jpg'"-->
+                        <!--th:attr="src='img/band/band_' + ${bandObject.getId()} + '.jpg'"-->
                     </div>
                     <div class="detail-page-info band-info" >
-                        <div class="band-name info-row" th:text="${band.getName()}">band name</div>
+                        <div class="band-name info-row" th:text="${bandObject.name}">band name</div>
                         <div class="band-genres info-row">
-                            <a href="" class="band-genres" th:text="${band.getStyle()}">band genre</a>
+                            <a href="" class="band-genres" th:text="${bandObject.musicStyle}">band genre</a>
                         </div>
                     </div>
                 </div>
