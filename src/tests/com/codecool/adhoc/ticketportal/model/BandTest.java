@@ -20,10 +20,10 @@ class BandTest {
 
     @BeforeAll
     static void populateDB() {
-        Band band = new Band("testBand", MusicStyle.LATIN);
-        Band band1 = new Band("SecondBand", MusicStyle.FOLK);
-        Band band2 = new Band("ThirdBand", MusicStyle.HIPHOP);
-        Band band3 = new Band("FourthBand", MusicStyle.HIPHOP);
+        Band band = new Band("testBand", MusicStyle.LATIN,"test");
+        Band band1 = new Band("SecondBand", MusicStyle.FOLK, "");
+        Band band2 = new Band("ThirdBand", MusicStyle.HIPHOP,"testDescription");
+        Band band3 = new Band("FourthBand", MusicStyle.HIPHOP, "Biggest HipHop Band");
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(band);

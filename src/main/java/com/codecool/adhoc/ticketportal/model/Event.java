@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
 
 @Entity
 @NamedQueries({
@@ -28,19 +28,24 @@ public class Event {
     private String name;
     @ManyToMany
     @JoinTable(name = "event_bands")
-    private Set<Band> bands = new HashSet<>();
+    private List<Band> bands = new ArrayList<>();
     @ManyToOne
     private Location location;
     private Date date;
+    private String description;
 
     public Event() {
     }
 
-    public Event(String name, Location location, String date) throws ParseException{
+    public Event(String name, Location location, String date, String description) throws ParseException{
         this.name = name;
         this.location = location;
         this.date = simpleDateFormat.parse(date);
+        this.description = description;
+
     }
+
+    public Long getId() { return id; }
 
     public Location getLocation() {
         return location;
@@ -58,7 +63,7 @@ public class Event {
         this.date = simpleDateFormat.parse(date);
     }
 
-    public Set<Band> getBands() {
+    public List<Band> getBands() {
         return bands;
     }
 
@@ -74,6 +79,10 @@ public class Event {
         this.name = name;
     }
 
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
     @Override
     public String toString() {
         return "Event:" +
@@ -81,6 +90,7 @@ public class Event {
                 ",\nname: " + name +
                 ",\nbands: " + bands +
                 ",\nlocation: " + location +
-                ",\ndate: " + date;
+                ",\ndate: " + date +
+                ",\ndescription: " + description;
     }
 }
