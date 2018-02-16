@@ -69,9 +69,9 @@ public class ConcertTicketPortal {
 
 
     private static void populateDB(EntityManager entityManager) throws ParseException {
-        Band band1 = new Band("Lakodalmas Lajos", MusicStyle.ROLLICKING, "Támogatónk az E.ON! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet. Sed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
-        Band band2 = new Band("Bunyós Pityu", MusicStyle.ROLLICKING, "Gyere ki a hóra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet. Sed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
-        Band band3 = new Band("Fásy Ádám", MusicStyle.ROLLICKING, "Fásy Mulató forever!!! Morbi ex lectus, vulputate id nisl vel, lobortis posuere diam. Sed suscipit eros ligula, a elementum ex auctor at. Nam ullamcorper blandit tincidunt. Aenean eget diam mauris.");
+        Band band1 = new Band("Lakodalmas Lajos", MusicStyle.ROLLICKING, "Támogatónk az E.ON! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet.\nSed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
+        Band band2 = new Band("Bunyós Pityu", MusicStyle.ROLLICKING, "Gyere ki a hóra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra porttitor aliquet.\nSed finibus, nibh id dapibus euismod, dui erat bibendum turpis, non sodales tellus arcu et leo.");
+        Band band3 = new Band("Fásy Ádám", MusicStyle.ROLLICKING, "Fásy Mulató forever!!! Morbi ex lectus, vulputate id nisl vel, lobortis posuere diam. Sed suscipit eros ligula, a elementum ex auctor at.\nNam ullamcorper blandit tincidunt. Aenean eget diam mauris.");
         Band band4 = new Band("AC/DC", MusicStyle.ROCK, "Thunderstuck!!! AC/DC are an Australian rock band, formed in Sydney in 1973 by brothers Malcolm and Angus Young. They refer to themselves as \"a rock and roll band, nothing more, nothing less\".");
 
         Location location1 = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
