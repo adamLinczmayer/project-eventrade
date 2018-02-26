@@ -108,7 +108,7 @@ src/main/resources/META-INF/drop-schema.ddl
 
 
 #Spring configuration file
-src/main/application.properties
+src/main/resources/application.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
