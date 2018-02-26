@@ -47,7 +47,7 @@ public class Order {
         this.lineItems.add(lineItem);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

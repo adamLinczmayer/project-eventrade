@@ -7,7 +7,6 @@ import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
-import com.codecool.adhoc.ticketportal.utility.DatabaseTool;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
