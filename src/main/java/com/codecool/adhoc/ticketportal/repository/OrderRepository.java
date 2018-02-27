@@ -9,9 +9,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /*
     TODO: Order queries
 
-    - findOrderByUserId
+    - findOrdersByUserId
     -* findOrdersByStatus
     -* findLineItemsByOrderId
 
+    ??? find by exact statuses
      */
 }
