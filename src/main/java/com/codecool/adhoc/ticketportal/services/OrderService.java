@@ -24,12 +24,13 @@ public class OrderService {
         orderRepository.updateOrderStatus(orderStatus, order.getId());
     }
 
-    public List<Order> getOrdersByUser(User user) {
-        return orderRepository.getOrdersByUser(user);
+    public List<Order> getOrderByUserId(Long userId) {
+        return orderRepository.getOrdersByUserId(userId);
+
     }
 
-    public List<Order> getOrdersByUserAndStatus(User user, OrderStatus status) {
-        return orderRepository.getOrdersByUserAndStatus(user, status);
+    public List<Order> getOrdersByUserIdAndStatus(Long userId, OrderStatus status) {
+        return orderRepository.getOrdersByUserIdAndStatus(userId, status);
     }
 
 
