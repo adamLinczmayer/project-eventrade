@@ -8,12 +8,6 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long>{
-    /*
-    TODO: Location queries
-
-    - findLocationsByName
-
-     */
 
     List<Location> findLocationsByNameIsLike(String name);
 
