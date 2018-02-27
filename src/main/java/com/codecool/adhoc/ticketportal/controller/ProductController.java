@@ -11,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
+import java.util.Map;
 
 import static java.lang.Long.parseLong;
 
@@ -62,6 +65,27 @@ public class ProductController {
         System.out.println(bandId);
         model.addAttribute("bandObject", bandService.findBandById(bandId));
         return "band_page";
+    }
+
+
+    @GetMapping(value = "/addevent")
+    public String renderAddEventPage(Model model){
+        model.addAttribute("allBand", bandService.findAllBand());
+        model.addAttribute("locations", locationService.findAllLocation());
+        return "add_event";
+    }
+
+
+    @PostMapping(value = "/save-event")
+    public String saveEvent(@RequestParam Map<String, String> queryParameters) throws ParseException{
+        System.out.println(queryParameters);
+        Event newEvent = new Event(queryParameters.get("event-name"),
+                                    locationService.findById(parseLong(queryParameters.get("location"))),
+                                    queryParameters.get("event-date") + "-" + queryParameters.get("event-time"),
+                                    queryParameters.get("event-description"));
+        newEvent.addBand(bandService.findBandById(parseLong(queryParameters.get("band"))));
+        eventService.saveEvent(newEvent);
+        return "redirect:/";
     }
 
 

@@ -5,6 +5,8 @@ import com.codecool.adhoc.ticketportal.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LocationService {
 
@@ -13,5 +15,13 @@ public class LocationService {
 
     public Location saveLocation(Location location){
         return locationRepository.save(location);
+    }
+
+    public List<Location> findAllLocation(){
+        return locationRepository.findAll();
+    }
+
+    public Location findById(Long id){
+        return locationRepository.findById(id);
     }
 }

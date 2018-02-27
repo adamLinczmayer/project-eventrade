@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+</head>
+<body>
+    <div class="container">
+        <div class="960">
+            <h1>Add Event</h1>
+            <form action="/save-event" method="post">
+                <div id="event-details">
+                    Event Name:
+                    <input type="text" name="event-name">
+                    Event Date:
+                    <input type="date" name="event-date"><input type="time" name="event-time">
+                    <br>
+                    Event Description:
+                    <textarea name="event-description"></textarea>
+                </div>
+                <div>
+                    <br>
+                    Select a Band:
+                    <select name="band">
+                        <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
+                    </select>
+                    <br>
+                    Select a Location:
+                    <select name="location">
+                        <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
+                    </select>
+                </div>
+                <input type="submit" value="Add Event">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
