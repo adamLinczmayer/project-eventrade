@@ -1,3 +1,4 @@
+/*
 package com.codecool.adhoc.ticketportal.model;
 
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
@@ -44,4 +45,4 @@ class TicketTest {
         List<Ticket> results = em.createNamedQuery("Ticket.findAllTickets", Ticket.class).getResultList();
         assertTrue(results.size() == 4);
     }
-}
+}*/

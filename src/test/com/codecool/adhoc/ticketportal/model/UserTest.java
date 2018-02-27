@@ -1,3 +1,4 @@
+/*
 package com.codecool.adhoc.ticketportal.model;
 
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
@@ -42,3 +43,4 @@ public class UserTest {
     }
 
 }
+*/

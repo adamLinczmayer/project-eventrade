@@ -1,3 +1,4 @@
+/*
 package com.codecool.adhoc.ticketportal.model;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -56,3 +57,4 @@ public class EventTest {
                 Event.class).setParameter("currentDate", testDate).getResultList().size() == 2);
     }
 }
+*/
