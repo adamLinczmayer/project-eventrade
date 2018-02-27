@@ -106,6 +106,10 @@ src/main/resources/META-INF/persistence.xml
 src/main/resources/META-INF/create-schema.ddl
 src/main/resources/META-INF/drop-schema.ddl
 
+
+#Spring configuration file
+src/main/resources/application.properties
+
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 

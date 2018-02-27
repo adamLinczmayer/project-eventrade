@@ -5,11 +5,8 @@ import javax.persistence.*;
 @Embeddable
 public class LineItem {
 
-    @OneToOne
-    private Ticket ticket;
-
     @ManyToOne
-    private Order order;
+    private Ticket ticket;
 
     private Integer quantity;
 
@@ -19,14 +16,6 @@ public class LineItem {
     public LineItem(Ticket ticket, Integer quantity) {
         this.ticket = ticket;
         this.quantity = quantity;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Ticket getTicket() {

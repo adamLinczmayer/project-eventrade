@@ -37,7 +37,7 @@ public class Location {
         this.capacity = capacity;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
