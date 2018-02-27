@@ -9,10 +9,18 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /*
     TODO: Order queries
 
+    - createOrder
+    - changeOrderStatus
     - findOrdersByUserId
-    -* findOrdersByStatus
-    -* findLineItemsByOrderId
+    - findOrdersByStatusAndUserId
+    - addLineItemToOrder
+    - deleteLineItemFromOrder
+    - clearLineItemsFromOrder
+    - increaseLineItemQuantity
+    - decreaseLineItemQuantity
+    - setLineItemQuantity
 
-    ??? find by exact statuses
      */
+
+
 }
