@@ -6,4 +6,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long>{
+    /*
+    TODO: Ticket queries
+
+    - findTicketById
+    - findAllTickets
+    -* findTicketByEvent
+
+     */
 }
