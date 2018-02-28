@@ -78,5 +78,14 @@ public class ProductController {
     }
 
 
+    @GetMapping(value = "/purchase")
+    public String purchasing(Model model) {
+        User user = userService.findUserById(1L);
+        List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
+        Order order = orders.get(0);
+        order.setStatus(OrderStatus.CHECKOUT);
+        return "all_events";
+    }
+
 
 }
