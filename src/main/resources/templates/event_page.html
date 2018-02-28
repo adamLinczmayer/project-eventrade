@@ -25,16 +25,15 @@
                         </div>
                     </div>
                 </div>
-                <form action="/addToCart" method="post">
-                    <div id="ticket-to-cart">
-                        Available ticket types:
-                        <select name="ticket_type" id="ticket_type_election">
-                            <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
-                            </option>
-                        </select>
-                    </div>
-                    <input type="submit" value="Add To Cart">
+                <form id="addToCartForm">
+                    Available ticket types:
+                    <select name="ticket_type" id="ticket_type_election">
+                        <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
+                        </option>
+                    </select>
+                    <button type="button" id="addToCartBtn">Add To Cart</button>
                 </form>
+
             </div>
             <div class="detail-page-description"></div>
         </div>

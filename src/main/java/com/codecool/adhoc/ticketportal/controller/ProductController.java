@@ -9,8 +9,7 @@ import com.codecool.adhoc.ticketportal.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -82,12 +81,25 @@ public class ProductController {
 
 
     @GetMapping(value = "/purchase")
-    public String purchasing(Model model) {
+    public String purchasing() {
         User user = userService.findUserById(1L);
         List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
         Order order = orders.get(0);
         order.setStatus(OrderStatus.CHECKOUT);
         return "all_events";
+    }
+
+
+    @PostMapping(value = "/add-to-cart")
+    public @ResponseBody void addToCart(@RequestParam Map<String, String> queryParameters){
+        Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
+                OrderStatus.CART).get(0);
+        Set<LineItem> lineItems = cart.getLineItems();
+        for (LineItem lineItem:lineItems) {
+            System.out.println(lineItem);
+        }
+        System.out.println(ticketId);
     }
 
 

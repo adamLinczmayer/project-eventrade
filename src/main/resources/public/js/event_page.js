@@ -1,12 +1,18 @@
 $(function() {
 
-    $('.addToCartBtn').click(function () {
-        var eventId = this.eventId;
+    $('#addToCartBtn').click(function () {
+        var ticketId = $("form").value();
+        var details = {
+            "ticketId": ticketId
+        };
         $.ajax({
-            url: '/api/add_to_cart?id=' + id,
+            url: '/add-to-cart',
+            type: 'POST',
+            data: details,
             success: function (data) {
-                $('.num_of_prods').html(data);
+                console.log(data);
             }
+
         });
-    });
+    })
 }
