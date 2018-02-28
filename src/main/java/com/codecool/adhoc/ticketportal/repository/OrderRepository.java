@@ -14,29 +14,15 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    /*
-    TODO: Order queries
-
-    - changeOrderStatus
-    - findOrdersByUserId
-    - findOrdersByStatusAndUserId
-    - addLineItemToOrder
-    - deleteLineItemFromOrder
-    - clearLineItemsFromOrder
-    - increaseLineItemQuantity
-    - decreaseLineItemQuantity
-    - setLineItemQuantity
-
-     */
 
     @Transactional
     @Modifying
     @Query("UPDATE Order SET status = ?1 WHERE id = ?2")
     void updateOrderStatus(@Param("status")OrderStatus orderStatus, @Param("orderId")Long orderId);
 
-    List<Order> getOrdersByUserId(Long userId);
+    List<Order> getOrdersByUsers(User user);
 
-    List<Order> getOrdersByUserIdAndStatus(Long userId, OrderStatus status);
+    List<Order> getOrdersByUsersAndStatus(User user, OrderStatus status);
 
 
 }

@@ -24,28 +24,13 @@ public class OrderService {
         orderRepository.updateOrderStatus(orderStatus, order.getId());
     }
 
-    public List<Order> getOrderByUserId(Long userId) {
-        return orderRepository.getOrdersByUserId(userId);
+    public List<Order> getOrderByUserId(User user) {
+        return orderRepository.getOrdersByUsers(user);
 
     }
 
-    public List<Order> getOrdersByUserIdAndStatus(Long userId, OrderStatus status) {
-        return orderRepository.getOrdersByUserIdAndStatus(userId, status);
+    public List<Order> getOrdersByUserIdAndStatus(User user, OrderStatus status) {
+        return orderRepository.getOrdersByUsersAndStatus(user, status);
     }
 
-
-    /*
-    TODO: Order queries
-
-    - changeOrderStatus
-    - findOrdersByUserId
-    - findOrdersByStatusAndUserId
-    - addLineItemToOrder
-    - deleteLineItemFromOrder
-    - clearLineItemsFromOrder
-    - increaseLineItemQuantity
-    - decreaseLineItemQuantity
-    - setLineItemQuantity
-
-     */
 }
