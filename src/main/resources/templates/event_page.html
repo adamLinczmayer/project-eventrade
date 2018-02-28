@@ -10,17 +10,10 @@
 <body>
     <div class="container">
         <div class="960">
-            <br/>
-            <a href="/events">Home</a>
-            <br/>
-            <h1>EVENT PAGE</h1>
             <div class="img-and-info event-img-and-info">
                 <div class="detail-page-image event-image">
                     <img width="500px" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
 
-                </div>
-                <div>
-                    <btn id="addToCartBtn" th:value="${event.id}">Add to cart</btn>
                 </div>
                 <div class="detail-page-info event-info">
                     <div class="event-name info-row" th:text="${event.name}">event name</div>
