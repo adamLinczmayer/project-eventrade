@@ -7,13 +7,13 @@ import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import com.codecool.adhoc.ticketportal.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 
 import java.util.Map;
@@ -78,6 +78,7 @@ public class ProductController {
     public String renderAddEventPage(Model model){
         model.addAttribute("allBand", bandService.findAllBand());
         model.addAttribute("locations", locationService.findAllLocation());
+        model.addAttribute("musicStyles", MusicStyle.values());
         return "add_event";
     }
 
@@ -94,9 +95,12 @@ public class ProductController {
         return "redirect:/";
     }
 
-
-
-
-
+    @PostMapping(value = "/add-band")
+    public @ResponseBody Band saveBand(@RequestParam Map<String, String> queryParameters){
+        Band band = new Band(queryParameters.get("name"), MusicStyle.valueOf(queryParameters.get("musicStyle")), queryParameters.get("description"));
+        Band savedBand = bandService.saveBand(band);
+        System.out.println(savedBand);
+        return savedBand;
+    }
 
 }

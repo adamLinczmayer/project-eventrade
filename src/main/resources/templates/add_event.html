@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Event</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/add.js" defer></script>
+    <link rel="stylesheet" href="/css/addevent.css">
 </head>
 <body>
     <div class="container">
@@ -21,9 +25,29 @@
                 <div>
                     <br>
                     Select a Band:
-                    <select name="band">
+                    <select name="band" id="bandSelect">
                         <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
                     </select>
+                    If your band doesn't exist in our database:
+                    <button type="button" id="addBandButton" onclick="toggleAddButton()">Add Band</button>
+                    <div class="addBand">
+                        <form id="addBandForm">
+                            <br>
+                            Add a Band to our list
+                            <br>
+                            Band's Name:
+                            <input type="text" name="band-name">
+                            <br>
+                            Band's Description:
+                            <input type="text" name="band-desc">
+                            <br>
+                            Band's Style:
+                            <select name="musicStyle">
+                                <option th:each="musicStyle : ${musicStyles}" th:text="${musicStyle}" th:value="${musicStyle}"></option>
+                            </select>
+                            <button type="button" onclick="sendAddBandForm()">Submit Band</button>
+                        </form>
+                    </div>
                     <br>
                     Select a Location:
                     <select name="location">
