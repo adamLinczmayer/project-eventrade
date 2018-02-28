@@ -60,7 +60,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void testViewEvents() throws Exception {
+    void testRenderEvents() throws Exception {
         List<Event> expectedEvents = Arrays.asList(
                 new Event("event1", new Location(), "2020-10-10-10:10", "desc"),
                 new Event("event2", new Location(), "2019-01-01-01:01", "desc"));
@@ -71,13 +71,13 @@ class ProductControllerTest {
     }
 
     @Test
-    void testViewEventsError() throws Exception {
+    void testRenderEventsError() throws Exception {
         mockMvc.perform(get("/abc"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    void testViewEvent() throws Exception {
+    void testRenderSpecificEventPage() throws Exception {
         Event expectedEvent = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
         when(eventService.findById(1L)).thenReturn(expectedEvent);
         mockMvc.perform(get("/event/{id}", 1))
@@ -86,7 +86,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void testViewEventError() throws Exception {
+    void testRenderSpecificEventPageError() throws Exception {
         Event expectedEvent = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
         when(eventService.findById(1L)).thenReturn(expectedEvent);
         mockMvc.perform(get("/event/{id}", 100000000))
@@ -94,7 +94,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void testViewBand() throws Exception {
+    void renderBandPage() throws Exception {
         Band expectedBand = new Band("band1", MusicStyle.JAZZ, "desc");
         when(bandService.findBandById(1L)).thenReturn(expectedBand);
         mockMvc.perform(get("/band/{id}", 1))
@@ -103,7 +103,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void testViewBandError() throws Exception {
+    void renderBandPageError() throws Exception {
         Band expectedBand = new Band("band1", MusicStyle.JAZZ, "desc");
         when(bandService.findBandById(1L)).thenReturn(expectedBand);
         mockMvc.perform(get("/band/{id}", 1000000000))
