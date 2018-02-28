@@ -1,4 +1,4 @@
-function toggleAddButton() {
+function toggleBandButton() {
     let displayStatus = $(".addBand").css("display");
     if(displayStatus === "none"){
         $(".addBand").css("display", "inline");
@@ -7,15 +7,22 @@ function toggleAddButton() {
     }
 }
 
+function toggleLocationButton() {
+    let displayStatus = $(".addLocation").css("display");
+    if(displayStatus === "none"){
+        $(".addLocation").css("display", "inline");
+    } else {
+        $(".addLocation").css("display", "none");
+    }
+}
+
 
 function sendAddBandForm() {
     let formArray = $("form").serializeArray();
-    /*console.log(formArray);*/
     let bandName;
     let bandDesc;
     let bandStyle;
     for(let i = 0; i < formArray.length; i++){
-        /*console.log(formArray[i])*/
         if(formArray[i].name === "band-name"){
             bandName = formArray[i].value;
         }
@@ -40,8 +47,46 @@ function sendAddBandForm() {
         data: bandDetails,
         success: function (data) {
             console.log(data);
-            toggleAddButton();
+            toggleBandButton();
             $("#bandSelect").append($("<option></option>")
+                .attr("value", data["id"])
+                .text(data["name"]))
+        }
+
+    });
+}
+
+function sendAddLocationForm() {
+    let formArray = $("form").serializeArray();
+    let locName;
+    let locAddress;
+    let locCapacity;
+    for(let i = 0; i < formArray.length; i++){
+        if(formArray[i].name === "location-name"){
+            locName = formArray[i].value;
+        }
+        if(formArray[i].name === "location-address"){
+            locAddress = formArray[i].value;
+        }
+        if(formArray[i].name === "capacity"){
+            locCapacity = formArray[i].value;
+        }
+    }
+
+    let bandDetails = {
+        "name": locName,
+        "address": locAddress,
+        "capacity": locCapacity
+    }
+
+    $.ajax({
+        url: '/add-location',
+        type: 'POST',
+        data: bandDetails,
+        success: function (data) {
+            console.log(data);
+            toggleLocationButton();
+            $("#locationSelect").append($("<option></option>")
                 .attr("value", data["id"])
                 .text(data["name"]))
         }

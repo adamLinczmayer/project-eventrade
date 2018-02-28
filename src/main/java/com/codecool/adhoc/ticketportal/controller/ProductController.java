@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
+import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 
 @Controller
@@ -101,6 +102,12 @@ public class ProductController {
         Band savedBand = bandService.saveBand(band);
         System.out.println(savedBand);
         return savedBand;
+    }
+
+    @PostMapping(value = "/add-location")
+    public @ResponseBody Location saveLocation(@RequestParam Map<String, String> queryParameters){
+        Location location = locationService.saveLocation(new Location(queryParameters.get("name"), queryParameters.get("address"), parseInt(queryParameters.get("capacity"))));
+        return location;
     }
 
 }

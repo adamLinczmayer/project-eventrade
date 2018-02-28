@@ -29,8 +29,8 @@
                         <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
                     </select>
                     If your band doesn't exist in our database:
-                    <button type="button" id="addBandButton" onclick="toggleAddButton()">Add Band</button>
-                    <div class="addBand">
+                    <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
+                    <div class="addBand hiddenDiv">
                         <form id="addBandForm">
                             <br>
                             Add a Band to our list
@@ -50,9 +50,27 @@
                     </div>
                     <br>
                     Select a Location:
-                    <select name="location">
+                    <select name="location" id="locationSelect">
                         <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
                     </select>
+                    If your location doesn't exist in our database:
+                    <button type="button" id="addLocationButton" onclick="toggleLocationButton()">Add Location</button>
+                    <div class="addLocation hiddenDiv">
+                        <form id="addLocationForm">
+                            <br>
+                            Add a Location to our list
+                            <br>
+                            Location Name:
+                            <input type="text" name="location-name">
+                            <br>
+                            Location Address:
+                            <input type="text" name="location-address">
+                            <br>
+                            Location Capacity:
+                            <input type="number" name="capacity">
+                            <button type="button" onclick="sendAddLocationForm()">Submit Location</button>
+                        </form>
+                    </div>
                 </div>
                 <input type="submit" value="Add Event">
             </form>
