@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 import static java.lang.Long.parseLong;
 
@@ -68,7 +67,16 @@ public class ProductController {
     }
 
 
-
+    @GetMapping(value = "/cart")
+    public String renderCartPage(Model model) {
+        User user = userService.findUserById(1L);
+        List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
+        Order order = orders.get(0); // There is only 1 order with cart status
+        Set<LineItem> lineItems = order.getLineItems();
+        model.addAttribute("order", order);
+        model.addAttribute("lineItems", lineItems);
+        return "cart_page";
+    }
 
 
 
