@@ -51,7 +51,10 @@ public class ProductController {
                                           @PathVariable("id") String id) {
         Long eventId;
         eventId = parseLong(id);
-        model.addAttribute("event", eventService.findById(eventId));
+        Event event = eventService.findById(eventId);
+        List<Ticket> tickets = ticketService.findTicketsByEvent(event);
+        model.addAttribute("event", event);
+        model.addAttribute("tickets", tickets);
         return "event_page";
     }
 

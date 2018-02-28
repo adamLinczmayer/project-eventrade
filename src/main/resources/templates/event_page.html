@@ -32,29 +32,15 @@
                         </div>
                     </div>
                 </div>
-                <form action="/save-event" method="post">
-                    <div id="event-details">
-                        Choose a ticket type!
+                <form action="/addToCart" method="post">
+                    <div id="ticket-to-cart">
+                        Available ticket types:
                         <select name="ticket_type" id="ticket_type_election">
-                            <option th:each="type : ${event.}" th:value="${banda.id}" th:text="${banda.name}"></option>
+                            <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
+                            </option>
                         </select>
-
                     </div>
-                    <!--<div>
-                        <br>
-                        Select a Band:
-                        <select name="band" id="bandSelect">
-                            <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
-                        </select>
-
-                        <br>
-                        Select a Location:
-                        <select name="location" id="locationSelect">
-                            <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
-                        </select>
-
-                    </div>
-                    <input type="submit" value="Add Event">-->
+                    <input type="submit" value="Add To Cart">
                 </form>
             </div>
             <div class="detail-page-description"></div>
