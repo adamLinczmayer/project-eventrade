@@ -1,9 +1,12 @@
 package com.codecool.adhoc.ticketportal.services;
 
+import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TicketService {
@@ -15,8 +18,8 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
-    public void findTicketById(Long id) {
-        ticketRepository.findOne(id);
+    public List<Ticket> findTicketsByEvent(Event event) {
+        return ticketRepository.findTicketsByEvent(event);
     }
 
 }
