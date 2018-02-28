@@ -1,17 +1,13 @@
 package com.codecool.adhoc.ticketportal.controller;
 
-import com.codecool.adhoc.ticketportal.model.Band;
 import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
-import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
-import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.services.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.View;
@@ -19,12 +15,12 @@ import org.springframework.web.servlet.View;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.mock.staticmock.AnnotationDrivenStaticEntityMockingControl.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class ProductControllerTest {
+class ProductControllerTest {
 
     private MockMvc mockMvc;
 
@@ -62,18 +58,5 @@ public class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("events", expectedEvents));
     }
-
-    /*@Test
-    void testGetAllSuccess() throws Exception {
-        List<Band> bands = Arrays.asList(
-                new Band("band1", MusicStyle.JAZZ, "band1 desc"),
-                new Band("band2", MusicStyle.JAZZ, "band2 desc")
-        );
-        when(bandService.findAllBand()).thenReturn(bands);
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
-        verify();
-        verifyNoMoreInteractions(bandService);
-    }*/
 
 }
