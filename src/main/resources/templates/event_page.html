@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Event Page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/event_page.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -16,6 +19,9 @@
                     <img width="500px" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
 
                 </div>
+                <div>
+                    <btn id="addToCartBtn" th:value="${event.id}">Add to cart</btn>
+                </div>
                 <div class="detail-page-info event-info">
                     <div class="event-name info-row" th:text="${event.name}">event name</div>
                     <div class="event-date info-row" th:text="${event.date}">event date</div>
@@ -26,6 +32,30 @@
                         </div>
                     </div>
                 </div>
+                <form action="/save-event" method="post">
+                    <div id="event-details">
+                        Choose a ticket type!
+                        <select name="ticket_type" id="ticket_type_election">
+                            <option th:each="type : ${event.}" th:value="${banda.id}" th:text="${banda.name}"></option>
+                        </select>
+
+                    </div>
+                    <!--<div>
+                        <br>
+                        Select a Band:
+                        <select name="band" id="bandSelect">
+                            <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
+                        </select>
+
+                        <br>
+                        Select a Location:
+                        <select name="location" id="locationSelect">
+                            <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
+                        </select>
+
+                    </div>
+                    <input type="submit" value="Add Event">-->
+                </form>
             </div>
             <div class="detail-page-description"></div>
         </div>

@@ -36,6 +36,8 @@ public class InitializerBean {
         event2.addBand(band3);
         Ticket ticket1 = new Ticket(event1, 200f, TicketType.NORMAL);
         Ticket ticket2 = new Ticket(event1, 100f, TicketType.STUDENT);
+        Ticket ticket3 = new Ticket(event2, 420f, TicketType.NORMAL);
+        Ticket ticket4 = new Ticket(event3, 420f, TicketType.NORMAL);
         User user = new User("Jancsika", "j@email.com", "Kukorica Jancsi", UserType.BUYER);
         Order order = new Order(user, OrderStatus.CART);
 
@@ -54,6 +56,8 @@ public class InitializerBean {
 
         ticketService.saveTicket(ticket1);
         ticketService.saveTicket(ticket2);
+        ticketService.saveTicket(ticket3);
+        ticketService.saveTicket(ticket4);
 
         userService.saveUser(user);
 
