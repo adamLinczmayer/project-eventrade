@@ -5,6 +5,7 @@ import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.services.*;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -64,6 +65,12 @@ class ProductControllerTest {
     }
 
     @Test
+    void testViewEventsError() throws Exception {
+        mockMvc.perform(get("/abc"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void testViewEvent() throws Exception {
         Event expectedEvent = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
         when(eventService.findById(1L)).thenReturn(expectedEvent);
@@ -71,6 +78,12 @@ class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("event", expectedEvent));
     }
+
+    /*@Test
+    void testViewEventError() throws Exception {
+        mockMvc.perform(get("/event/{id}", 100000000L))
+                .andExpect(status().isNotFound());
+    }*/
 
     @Test
     void testViewBand() throws Exception {
@@ -80,5 +93,11 @@ class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("bandObject", expectedBand));
     }
+
+    /*@Test
+    void testViewBandError() throws Exception {
+        mockMvc.perform(get("/band/{id}", 1000000000L))
+                .andExpect(status().isNotFound());
+    }*/
 
 }
