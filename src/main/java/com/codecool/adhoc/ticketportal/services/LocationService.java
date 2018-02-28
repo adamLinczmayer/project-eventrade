@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import java.util.Objects;
+
+
 @Service
 public class LocationService {
 
@@ -17,6 +20,7 @@ public class LocationService {
         return locationRepository.save(location);
     }
 
+
     public List<Location> findAllLocation(){
         return locationRepository.findAll();
     }
@@ -24,4 +28,16 @@ public class LocationService {
     public Location findById(Long id){
         return locationRepository.findById(id);
     }
+
+    public Location findLocationById(Long id) {
+        return locationRepository.findOne(id);
+    }
+
+    public List<Location> findLocationsByNameIsLike(String name) {
+        if(!Objects.equals(name.trim(), "")){
+            return locationRepository.findLocationsByNameIsLike(name);
+        }
+        return null;
+    }
+
 }

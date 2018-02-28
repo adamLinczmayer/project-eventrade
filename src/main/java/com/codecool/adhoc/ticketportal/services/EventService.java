@@ -5,6 +5,10 @@ import com.codecool.adhoc.ticketportal.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,4 +28,10 @@ public class EventService {
     public void saveEvent(Event event){
         eventRepository.save(event);
     }
+
+    public List<Event> findUpcomingEvents() throws ParseException {
+        Date currentDate = Calendar.getInstance().getTime();
+        return eventRepository.findEventsByDateAfter(currentDate);
+    }
+
 }

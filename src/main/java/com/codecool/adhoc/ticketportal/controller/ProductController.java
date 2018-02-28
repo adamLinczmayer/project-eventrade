@@ -15,7 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
+
 import java.util.Map;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 import static java.lang.Long.parseLong;
 
@@ -41,8 +47,8 @@ public class ProductController {
 
 
     @GetMapping(value = "")
-    public String renderEvents(Model model){
-        model.addAttribute("events", eventService.findAll());
+    public String renderEvents(Model model) throws ParseException {
+        model.addAttribute("events", eventService.findUpcomingEvents());
         return "all_events";
     }
 
