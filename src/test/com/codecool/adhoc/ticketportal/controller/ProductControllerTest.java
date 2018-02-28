@@ -1,7 +1,9 @@
 package com.codecool.adhoc.ticketportal.controller;
 
+import com.codecool.adhoc.ticketportal.model.Band;
 import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
+import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.services.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,11 +47,13 @@ class ProductControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).setSingleView(mockView).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(productController)
+                .setSingleView(mockView)
+                .build();
     }
 
     @Test
-    void testListEvents() throws Exception {
+    void testViewEvents() throws Exception {
         List<Event> expectedEvents = Arrays.asList(
                 new Event("event1", new Location(), "2020-10-10-10:10", "desc"),
                 new Event("event2", new Location(), "2019-01-01-01:01", "desc"));
@@ -57,6 +61,24 @@ class ProductControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("events", expectedEvents));
+    }
+
+    @Test
+    void testViewEvent() throws Exception {
+        Event expectedEvent = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
+        when(eventService.findById(1L)).thenReturn(expectedEvent);
+        mockMvc.perform(get("/event/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("event", expectedEvent));
+    }
+
+    @Test
+    void testViewBand() throws Exception {
+        Band expectedBand = new Band("band1", MusicStyle.JAZZ, "desc");
+        when(bandService.findBandById(1L)).thenReturn(expectedBand);
+        mockMvc.perform(get("/band/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("bandObject", expectedBand));
     }
 
 }
