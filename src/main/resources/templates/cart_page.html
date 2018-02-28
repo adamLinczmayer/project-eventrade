@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Shopping Cart</title>
+</head>
+<body>
+<div class="container">
+    <div class="960">
+        <h1>Shopping Cart</h1>
+        <div class="cart-items" th:each="cartItem, iterStat : ${}">
+            <div class="cart-item">
+                <!--<div class="event-image">
+                    <a th:href="'/event/' + ${event.id}">
+                        <img width="250" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
+                    </a>
+                </div>
+                <div class="event-name" th:text="${event.getName()}">event name</div>
+                <div class="event-date" th:text="${event.getDate()}">event date</div>
+                <div class="event-location" th:text="${event.getLocation().getName()}">event location</div>
+                <br/>-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
