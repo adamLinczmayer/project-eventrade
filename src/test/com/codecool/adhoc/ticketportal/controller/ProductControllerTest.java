@@ -85,25 +85,29 @@ class ProductControllerTest {
                 .andExpect(model().attribute("event", expectedEvent));
     }
 
-    /*@Test
+    @Test
     void testViewEventError() throws Exception {
-        mockMvc.perform(get("/event/{id}", 100000000L))
+        Event expectedEvent = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
+        when(eventService.findById(1L)).thenReturn(expectedEvent);
+        mockMvc.perform(get("/event/{id}", 100000000))
                 .andExpect(status().isNotFound());
-    }*/
+    }
 
     @Test
     void testViewBand() throws Exception {
         Band expectedBand = new Band("band1", MusicStyle.JAZZ, "desc");
         when(bandService.findBandById(1L)).thenReturn(expectedBand);
-        mockMvc.perform(get("/band/{id}", 1L))
+        mockMvc.perform(get("/band/{id}", 1))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("bandObject", expectedBand));
     }
 
-    /*@Test
+    @Test
     void testViewBandError() throws Exception {
-        mockMvc.perform(get("/band/{id}", 1000000000L))
+        Band expectedBand = new Band("band1", MusicStyle.JAZZ, "desc");
+        when(bandService.findBandById(1L)).thenReturn(expectedBand);
+        mockMvc.perform(get("/band/{id}", 1000000000))
                 .andExpect(status().isNotFound());
-    }*/
+    }
 
 }
