@@ -73,7 +73,6 @@ public class ProductController {
         List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
         Order order = orders.get(0); // There is only 1 order with cart status
         Set<LineItem> lineItems = order.getLineItems();
-        model.addAttribute("order", order);
         model.addAttribute("lineItems", lineItems);
         return "cart_page";
     }
