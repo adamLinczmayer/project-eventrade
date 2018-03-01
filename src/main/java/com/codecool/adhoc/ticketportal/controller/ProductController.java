@@ -86,7 +86,10 @@ public class ProductController {
         List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
         Order order = orders.get(0);
         order.setStatus(OrderStatus.CHECKOUT);
-        return "all_events";
+        orderService.saveOrder(order);
+        Order newOrder = new Order(user, OrderStatus.CART);
+        orderService.saveOrder(newOrder);
+        return "redirect:/";
     }
 
 
@@ -117,6 +120,4 @@ public class ProductController {
         }
         orderService.saveOrder(cart);
     }
-
-
 }
