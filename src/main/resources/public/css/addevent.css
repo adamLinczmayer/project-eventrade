@@ -17,6 +17,9 @@
     }
 }
 
+.pixel_960 {
+    margin-bottom: 30px;
+}
 
 .hiddenDiv {
     display: none;
@@ -71,7 +74,7 @@ a {
     justify-content: center;
 }
 
-.add_event_button {
+.add_event_button, .add_band_button, .add_location_button, .submit_band_button, .submit_location_button {
     color: #e79c27;
     border-color: #e79c27;
     background: #333333;
@@ -82,7 +85,8 @@ a {
     margin-bottom: 5px;
 }
 
-.event_name, .event_time, .event_date, .event_description, .ticket_price, .band_desc, .band_name {
+.event_name, .event_time, .event_date, .event_description, .ticket_price,
+.band_desc, .band_name, .location_name, .location_address, .location_capacity {
     color: white;
     border-color: #e79c27;
     background: #333333;
@@ -96,7 +100,7 @@ a {
     border: none;
 }
 
-.band_select, .location_select {
+.band_select, .location_select, .style_select {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

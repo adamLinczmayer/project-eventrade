@@ -45,7 +45,7 @@
             <input type="submit" value="Add Event" class="add_event_button" required>
         </form>
         If your band doesn't exist in our database:
-        <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
+        <button type="button" id="addBandButton" onclick="toggleBandButton()" class="add_band_button">Add Band</button>
         <div class="addBand hiddenDiv">
             <form id="addBandForm">
                 <br>
@@ -58,30 +58,30 @@
                 <input type="text" name="band-desc" class="band_desc"required>
                 <br>
                 Band's Style:
-                <select name="musicStyle">
+                <select name="musicStyle" class="style_select">
                     <option th:each="musicStyle : ${musicStyles}" th:text="${musicStyle}"
                             th:value="${musicStyle}"></option>
                 </select>
-                <button type="button" onclick="sendAddBandForm()">Submit Band</button>
+                <button type="button" onclick="sendAddBandForm()" class="submit_band_button">Submit Band</button>
             </form>
         </div>
         <br>
         If your location doesn't exist in our database:
-        <button type="button" id="addLocationButton" onclick="toggleLocationButton()">Add Location</button>
+        <button type="button" id="addLocationButton" onclick="toggleLocationButton()" class="add_location_button">Add Location</button>
         <div class="addLocation hiddenDiv">
             <form id="addLocationForm">
                 <br>
                 Add a Location to our list
                 <br>
                 Location Name:
-                <input type="text" name="location-name" required>
+                <input type="text" name="location-name" class="location_name" required>
                 <br>
                 Location Address:
-                <input type="text" name="location-address" required>
+                <input type="text" name="location-address" class="location_address" required>
                 <br>
                 Location Capacity:
-                <input type="number" name="capacity" required>
-                <button type="button" onclick="sendAddLocationForm()">Submit Location</button>
+                <input type="number" name="capacity" class="location_capacity" required>
+                <button type="button" onclick="sendAddLocationForm()" class="submit_location_button">Submit Location</button>
             </form>
         </div>
     </div>
