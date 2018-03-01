@@ -1,9 +1,9 @@
 $(function() {
 
     $('#addToCartBtn').click(function () {
-        var ticketId = $("#ticket-type-selection").val();
-        var quantity = $("#ticket-quantity").val();
-        var details = {
+        let ticketId = $("#ticket-type-selection").val();
+        let quantity = $("#ticket-quantity").val();
+        let details = {
             "ticketId": ticketId,
             "quantity": quantity
         };
