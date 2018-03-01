@@ -9,78 +9,81 @@
     <link rel="stylesheet" href="/css/addevent.css">
 </head>
 <body>
-    <div class="container">
-        <div class="960">
-            <h1>Add Event</h1>
-            <form action="/save-event" method="post">
-                <div id="event-details">
-                    Event Name:
-                    <input type="text" name="event-name">
-                    Event Date:
-                    <input type="date" name="event-date"><input type="time" name="event-time">
-                    <br>
-                    Event Description:
-                    <textarea name="event-description"></textarea>
-                </div>
-                <div>
-                    <br>
-                    Select a Band:
-                    <select name="band" id="bandSelect">
-                        <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
-                    </select>
+<div class="container">
+    <div class="pixel_960">
+        <div th:replace="header :: copy"></div>
+        <form action="/save-event" method="post">
+            <div id="event-details" class="event_details">
+                Event Name:
+                <input type="text" name="event-name"class="event_name">
+                Event Date:
+                <input type="date" name="event-date"><input type="time" name="event-time">
+                <br>
+                Event Description:
+                <textarea name="event-description"></textarea>
+            </div>
+            <div>
+                <br>
+                Select a Band:
+                <select name="band" id="bandSelect" class="band_select">
+                    <option th:each="banda : ${allBand}" th:value="${banda.id}" th:text="${banda.name}"></option>
+                </select>
 
-                    <br>
-                    Select a Location:
-                    <select name="location" id="locationSelect">
-                        <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
-                    </select>
+                <br>
+                Select a Location:
+                <select name="location" id="locationSelect">
+                    <option th:each="location : ${locations}" th:value="${location.id}"
+                            th:text="${location.name}"></option>
+                </select>
 
-                </div>
-                <div>
-                    Default Ticket price:
-                    <input type="number" name="ticket-price">
-                </div>
-                <input type="submit" value="Add Event">
+            </div>
+            <div>
+                Default Ticket price:
+                <input type="number" name="ticket-price">
+            </div>
+            <input type="submit" value="Add Event">
+        </form>
+        If your band doesn't exist in our database:
+        <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
+        <div class="addBand hiddenDiv">
+            <form id="addBandForm">
+                <br>
+                Add a Band to our list
+                <br>
+                Band's Name:
+                <input type="text" name="band-name">
+                <br>
+                Band's Description:
+                <input type="text" name="band-desc">
+                <br>
+                Band's Style:
+                <select name="musicStyle">
+                    <option th:each="musicStyle : ${musicStyles}" th:text="${musicStyle}"
+                            th:value="${musicStyle}"></option>
+                </select>
+                <button type="button" onclick="sendAddBandForm()">Submit Band</button>
             </form>
-            If your band doesn't exist in our database:
-            <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
-            <div class="addBand hiddenDiv">
-                <form id="addBandForm">
-                    <br>
-                    Add a Band to our list
-                    <br>
-                    Band's Name:
-                    <input type="text" name="band-name">
-                    <br>
-                    Band's Description:
-                    <input type="text" name="band-desc">
-                    <br>
-                    Band's Style:
-                    <select name="musicStyle">
-                        <option th:each="musicStyle : ${musicStyles}" th:text="${musicStyle}" th:value="${musicStyle}"></option>
-                    </select>
-                    <button type="button" onclick="sendAddBandForm()">Submit Band</button>
-                </form>
-            </div>
-            If your location doesn't exist in our database:
-            <button type="button" id="addLocationButton" onclick="toggleLocationButton()">Add Location</button>
-            <div class="addLocation hiddenDiv">
-                <form id="addLocationForm">
-                    <br>
-                    Add a Location to our list
-                    <br>
-                    Location Name:
-                    <input type="text" name="location-name">
-                    <br>
-                    Location Address:
-                    <input type="text" name="location-address">
-                    <br>
-                    Location Capacity:
-                    <input type="number" name="capacity">
-                    <button type="button" onclick="sendAddLocationForm()">Submit Location</button>
-                </form>
-            </div>
+        </div>
+        <br>
+        If your location doesn't exist in our database:
+        <button type="button" id="addLocationButton" onclick="toggleLocationButton()">Add Location</button>
+        <div class="addLocation hiddenDiv">
+            <form id="addLocationForm">
+                <br>
+                Add a Location to our list
+                <br>
+                Location Name:
+                <input type="text" name="location-name">
+                <br>
+                Location Address:
+                <input type="text" name="location-address">
+                <br>
+                Location Capacity:
+                <input type="number" name="capacity">
+                <button type="button" onclick="sendAddLocationForm()">Submit Location</button>
+            </form>
         </div>
     </div>
+</div>
 </body>
 </html>

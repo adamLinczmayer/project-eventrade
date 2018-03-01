@@ -1,24 +1,29 @@
+html {
+    height: 100%;
+}
+
+html, body {
+    margin: 0;
+}
+
 body {
-    background: #333333 url(../img/bg/EvenTrader_bg_20.png) center no-repeat fixed;
+    background: #333333 url(../img/bg/EvenTrader_bg_20.png) bottom no-repeat fixed;
+    background-size: cover;
     font-size: 8pt;
     font-family: 'Roboto', sans-serif;
+    height: 100%;
 }
 
 a {
     text-decoration: none;
-    color: white;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 5px;
-    padding-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .cart_button {
@@ -26,10 +31,13 @@ a:hover {
 }
 
 .logo {
-    max-width: 200px;
+    max-width: 300px;
+    margin-left: 10px;
 }
+
 .cart_button {
     max-width: 25px;
+    margin-right: 10px;
 }
 
 .container {
@@ -51,13 +59,29 @@ a:hover {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .events {
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-weight: bold;
     margin-left: 10px;
     margin-right: 10px;
+    min-width: 220px;
+    font-size: 1.5em;
+
+}
+
+.add_event {
+    color: #e79c27;
+    min-height: 220px;
+    border: 2px;
+    border-style: dashed;
+    border-color: #e79c27;
+    text-align: center;
+    line-height: 220px;
+    font-size: 1.2em;
 }
 
 .event_picture {
