@@ -6,10 +6,10 @@
 
 </head>
 <body>
-<div class="row">
-    <h1 class="indigo-text center" th:text="${error}">Not found</h1>
+<div>
+    <h1 th:text="${status} +' '+ ${error}">Not found</h1>
 
-    <p class="col s12 center" th:text="${message}">
+    <p th:text="${message}">
         This page is not available
     </p>
 </div>
