@@ -15,9 +15,9 @@
             <form action="/save-event" method="post">
                 <div id="event-details">
                     Event Name:
-                    <input type="text" name="event-name">
+                    <input type="text" name="event-name" required>
                     Event Date:
-                    <input type="date" name="event-date"><input type="time" name="event-time">
+                    <input type="date" name="event-date" required><input type="time" name="event-time" required>
                     <br>
                     Event Description:
                     <textarea name="event-description"></textarea>
@@ -38,9 +38,9 @@
                 </div>
                 <div>
                     Default Ticket price:
-                    <input type="number" name="ticket-price">
+                    <input type="number" name="ticket-price" required>
                 </div>
-                <input type="submit" value="Add Event">
+                <input type="submit" value="Add Event" required>
             </form>
             If your band doesn't exist in our database:
             <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
@@ -50,10 +50,10 @@
                     Add a Band to our list
                     <br>
                     Band's Name:
-                    <input type="text" name="band-name">
+                    <input type="text" name="band-name" required>
                     <br>
                     Band's Description:
-                    <input type="text" name="band-desc">
+                    <input type="text" name="band-desc" required>
                     <br>
                     Band's Style:
                     <select name="musicStyle">
@@ -70,10 +70,10 @@
                     Add a Location to our list
                     <br>
                     Location Name:
-                    <input type="text" name="location-name">
+                    <input type="text" name="location-name" required>
                     <br>
                     Location Address:
-                    <input type="text" name="location-address">
+                    <input type="text" name="location-address" required>
                     <br>
                     Location Capacity:
                     <input type="number" name="capacity">
