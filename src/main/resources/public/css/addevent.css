@@ -72,13 +72,33 @@ a {
 }
 
 .event_name {
-    background: yellow;
+    color: white;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.event_name:focus {
+    border: none;
 }
 
-.band_select {
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+.band_select, .location_select {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     background-color: #e79c27;
-    color: white;
+    color: #333333;
+    border: none;
+}
+
+.page_title {
+    font-weight: bold;
+    color: #e79c27;
+    font-size: 1.2em;
+    text-align: right;
+    margin-bottom: 40px;
+    text-transform: uppercase;
 }

@@ -12,10 +12,11 @@
 <div class="container">
     <div class="pixel_960">
         <div th:replace="header :: copy"></div>
+        <div class="page_title">Add event</div>
         <form action="/save-event" method="post">
             <div id="event-details" class="event_details">
                 Event Name:
-                <input type="text" name="event-name"class="event_name">
+                <input type="text" name="event-name"class="event_name"><br>
                 Event Date:
                 <input type="date" name="event-date"><input type="time" name="event-time">
                 <br>
@@ -31,7 +32,7 @@
 
                 <br>
                 Select a Location:
-                <select name="location" id="locationSelect">
+                <select name="location" id="locationSelect" class="location_select">>
                     <option th:each="location : ${locations}" th:value="${location.id}"
                             th:text="${location.name}"></option>
                 </select>
