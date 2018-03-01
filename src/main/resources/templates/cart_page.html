@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Shopping Cart</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/cart_page.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="960">
+        <h1>Shopping Cart</h1>
+        <div class="cartItems" th:each="lineItem, iterStat : ${lineItems}">
+            <div th:id="cartItem + ${lineItem.getTicket().getId()}" class="cartItem">
+                <div class="cartItem-image">
+                    <img width="250" th:attr="src='/img/event/event_' + ${lineItem.getTicket().getEvent().getId()} + '.jpg'" alt="cartItem picture"/>
+                </div>
+                <div class="cartItem-name" th:text="${lineItem.getTicket().getEvent().getName()}">cartItem name</div>
+                <div class="cartItem-date" th:text="${lineItem.getTicket().getEvent().getDate()}">cartItem date</div>
+                <div class="cartItem-location" th:text="${lineItem.getTicket().getEvent().getLocation().getName()}">cartItem location</div>
+                <div class="cartItem-ticketType" th:text="${lineItem.getTicket().getTicketType()}">ticket type</div>
+                <div class="cartItem-quantity">
+                <input onchange="changeQuantity()" th:attr="data-ticketId=${lineItem.getTicket().getId()}" type="number" name="quantity" id="cartItem-quantity" th:value="${lineItem.getQuantity()}" min="1">
+                </div>
+                <a th:onclick="'deleteLineItem(' + ${lineItem.getTicket().getId()} + ')'" href="#">X</a>
+                <br/>
+            </div>
+        </div>
+        <div>
+            <a id="checkout" href="/checkout">Purchase Items</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
