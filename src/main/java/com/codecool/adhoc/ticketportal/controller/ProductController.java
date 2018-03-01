@@ -64,11 +64,14 @@ public class ProductController {
 
     @GetMapping(value = "/band/{id}")
     public String renderBandPage(Model model,
-                                 @PathVariable("id") String id){
+                                 @PathVariable("id") String id) throws NoObjectInDatabaseException {
         Long bandId;
         bandId = parseLong(id);
-        System.out.println(bandId);
-        model.addAttribute("bandObject", bandService.findBandById(bandId));
+        Band band = bandService.findBandById(bandId);
+        if(band==null){
+            throw new NoObjectInDatabaseException("There is no such Event");
+        }
+        model.addAttribute("bandObject", band);
         return "band_page";
     }
 
