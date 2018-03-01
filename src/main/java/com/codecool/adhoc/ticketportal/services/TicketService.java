@@ -14,4 +14,9 @@ public class TicketService {
     public void saveTicket(Ticket ticket){
         ticketRepository.save(ticket);
     }
+
+    public void findTicketById(Long id) {
+        ticketRepository.findOne(id);
+    }
+
 }

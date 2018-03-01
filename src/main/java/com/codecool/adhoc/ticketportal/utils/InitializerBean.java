@@ -27,9 +27,9 @@ public class InitializerBean {
         Location location1 = new Location("CodePub", "1064, Bp, Nagymező u. 44.", 150);
         Location location2 = new Location("Lakas", "Leninvaros, Panel u. 43421.", 5);
         Location location3 = new Location("Zúzda", "1011, Bp, Rúgdkiaházoldalát u. 42.", 150);
-        Event event1 = new Event("Bunyós Pityu Hazibuli", location2, "2018-02-28-18:00", "Itt ugassál!");
+        Event event1 = new Event("Bunyós Pityu Hazibuli", location2, "2018-04-28-18:00", "Itt ugassál!");
         Event event2 = new Event("Lakodalom Lajossal", location2, "2019-02-28-18:00", "Az áram is belédcsap, olyan buli lesz");
-        Event event3 = new Event("Rock or Bust World Tour", location2, "2018-02-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014.");
+        Event event3 = new Event("Rock or Bust World Tour", location2, "2018-03-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014.");
         event1.addBand(band2);
         event2.addBand(band1);
         event3.addBand(band4);
