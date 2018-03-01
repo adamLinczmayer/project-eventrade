@@ -1,27 +1,19 @@
 package com.codecool.adhoc.ticketportal.controller;
 
-import com.codecool.adhoc.ticketportal.model.*;
+import com.codecool.adhoc.ticketportal.model.Band;
+import com.codecool.adhoc.ticketportal.model.Event;
+import com.codecool.adhoc.ticketportal.model.Location;
+import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
-import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
-import com.codecool.adhoc.ticketportal.model.enums.UserType;
 import com.codecool.adhoc.ticketportal.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.text.ParseException;
-
 import java.util.Map;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
@@ -92,7 +84,13 @@ public class ProductController {
                                     queryParameters.get("event-date") + "-" + queryParameters.get("event-time"),
                                     queryParameters.get("event-description"));
         newEvent.addBand(bandService.findBandById(parseLong(queryParameters.get("band"))));
-        eventService.saveEvent(newEvent);
+        newEvent = eventService.saveEvent(newEvent);
+        Integer defaultTicketPrice = parseInt(queryParameters.get("ticket-price"));
+        for(TicketType ticketType: TicketType.values()){
+
+            Ticket ticket = new Ticket(newEvent, defaultTicketPrice * ticketType.getMultiplier(), ticketType);
+            ticketService.saveTicket(ticket);
+        }
         return "redirect:/";
     }
 
