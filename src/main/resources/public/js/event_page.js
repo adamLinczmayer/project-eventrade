@@ -1,7 +1,7 @@
 $(function() {
 
     $('#addToCartBtn').click(function () {
-        var ticketId = $("form").value();
+        var ticketId = $("#ticket_type_election").val();
         var details = {
             "ticketId": ticketId
         };
@@ -10,9 +10,11 @@ $(function() {
             type: 'POST',
             data: details,
             success: function (data) {
-                console.log(data);
+                console.log("add-to-cart success. Data: " + data.responseText);
+            },
+            error: function (data) {
+                console.log("add-to-cart ERROR. Data: " + data.responseText)
             }
-
         });
     })
 });
