@@ -15,7 +15,6 @@
             <div class="img-and-info event-img-and-info">
                 <div class="detail-page-image event-image">
                     <img class="event-image-img" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
-
                 </div>
                 <div class="detail-page-info event-info">
                     <div class="event-name info-row" th:text="${event.name}">event name</div>
@@ -23,26 +22,27 @@
                     <div class="event-location info-row" th:text="'Location: ' + ${event.location.name}">event location</div>
                     <br>
                     <div class="event-bands info-row">
-                        <div>Bands: </div>
+                        <div class="bands_on">Bands on this event: </div>
                         <div class="event-band" th:each="banda : ${event.bands}">
                             <a th:href="'/band/' + ${banda.id}" th:text="${banda.name}">band</a>
                         </div>
                     </div>
-                </div>
-                <form id="addToCartForm">
-                    Available ticket types:
-                    <select name="ticket_type" id="ticket-type-selection">
-                        <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
-                        </option>
-                    </select>
-                    <input type="number" name="quantity" id="ticket-quantity" min="1" value="1">
-                    <button type="button" id="addToCartBtn">Add To Cart</button>
-                </form>
-                <div class="alert alert-success fade" role="alert">
+                <div class="alert alert-success_fade" role="alert">
                     <strong>Ticket(s) added to cart</strong>
                 </div>
+                </div>
+                </div>
+            <div class="addToCartForm">
+            <form id="addToCartForm">
+                Available ticket types:
+                <select name="ticket_type" id="ticket-type-selection" class="ticket_select">
+                    <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
+                    </option>
+                </select>
+                <input type="number" name="quantity" id="ticket-quantity" min="1" value="1" class="ticket_quantity">
+                <button type="button" id="addToCartBtn" class="add_to_cart_button">Add To Cart</button>
+            </form>
             </div>
-            <div class="detail-page-description"></div>
         </div>
     </div>
 </body>

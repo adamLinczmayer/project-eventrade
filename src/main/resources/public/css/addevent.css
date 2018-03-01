@@ -17,6 +17,9 @@
     }
 }
 
+.detail-page-image event-image {
+    display: inherit;
+}
 
 .hiddenDiv {
     display: none;

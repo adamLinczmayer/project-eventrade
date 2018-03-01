@@ -17,8 +17,24 @@
     }
 }
 
+.alert-success_fade {
+    margin: auto;
+    position: absolute;
+    top: 2%;
+    left: 48%;
+    bottom: 93%;
+    right: 28%;
+    color: white;
+    background: #ed2792;
+    display: inline-block;
+    font-size: 0.8em;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 45px;
+    box-shadow: 3px 3px 15px 0px rgb(0, 0, 0);
+}
 
-.hiddenDiv {
+.alert {
     display: none;
 }
 
@@ -52,18 +68,23 @@ a {
     padding-bottom: 20px;
 }
 
-.cart_button {
-    align-content: right;
+.detail-page-info {
+    padding-left: 20px;
+}
+
+.event-img-and-info {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .logo {
     max-width: 300px;
-    margin-left: 10px;
 }
 
 .cart_button {
-    max-width: 25px;
-    margin-right: 10px;
+    max-width: 40px;
 }
 
 .container {
@@ -74,4 +95,68 @@ a {
 
 .event-image-img {
     max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 8px 8px 14px black;
+}
+
+.event-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    font-size: 0.9em;
+    font-weight: lighter;
+    margin-bottom: 4px;
+}
+
+.event-location {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.bands_on {
+    font-weight: bolder;
+    background: #70141e;
+}
+
+.addToCartForm {
+    font-size: 12pt;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.add_to_cart_button {
+    font-size: 12pt;
+    color: #e79c27;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.ticket_select {
+    font-size: 12pt;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #e79c27;
+    color: #333333;
+    border: none;
+}
+
+.ticket_quantity {
+    font-size: 12pt;
+    color: white;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
