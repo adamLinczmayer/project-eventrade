@@ -25,8 +25,8 @@ public class EventService {
         return eventRepository.findOne(id);
     }
 
-    public void saveEvent(Event event){
-        eventRepository.save(event);
+    public Event saveEvent(Event event){
+        return eventRepository.save(event);
     }
 
     public List<Event> findUpcomingEvents() throws ParseException {

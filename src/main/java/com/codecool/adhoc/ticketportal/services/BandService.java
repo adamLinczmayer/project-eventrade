@@ -25,8 +25,8 @@ public class BandService {
         return bandRepository.findOne(id);
     }
 
-    public void saveBand(Band band){
-        bandRepository.save(band);
+    public Band saveBand(Band band){
+        return bandRepository.save(band);
     }
 
     public List<Band> findBandByMusicStyleString(String musicStyleString) {
