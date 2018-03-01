@@ -129,5 +129,22 @@ public class ProductController {
                 lineItem.setQuantity(quantity);
             }
         }
+        cart.setLineItems(cartLineItems);
+        orderService.saveOrder(cart);
+    }
+
+    @PostMapping(value = "/delete-lineitem")
+    public @ResponseBody void deleteLineItem(@RequestParam Map<String, String> queryParameters) {
+        Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
+                OrderStatus.CART).get(0);
+        Set<LineItem>cartLineItems = cart.getLineItems();
+        for(LineItem lineItem:cartLineItems) {
+            if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
+                cartLineItems.remove(lineItem);
+            }
+        }
+        cart.setLineItems(cartLineItems);
+        orderService.saveOrder(cart);
     }
 }

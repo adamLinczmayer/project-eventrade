@@ -12,7 +12,7 @@
     <div class="960">
         <h1>Shopping Cart</h1>
         <div class="cartItems" th:each="lineItem, iterStat : ${lineItems}">
-            <div class="cartItem">
+            <div th:id="cartItem + ${lineItem.getTicket().getId()}" class="cartItem">
                 <div class="cartItem-image">
                     <img width="250" th:attr="src='/img/event/event_' + ${lineItem.getTicket().getEvent().getId()} + '.jpg'" alt="cartItem picture"/>
                 </div>
@@ -23,6 +23,7 @@
                 <div class="cartItem-quantity">
                 <input onchange="changeQuantity()" th:attr="data-ticketId=${lineItem.getTicket().getId()}" type="number" name="quantity" id="cartItem-quantity" th:value="${lineItem.getQuantity()}" min="1">
                 </div>
+                <a th:onclick="'deleteLineItem(' + ${lineItem.getTicket().getId()} + ')'" href="#">X</a>
                 <br/>
             </div>
         </div>

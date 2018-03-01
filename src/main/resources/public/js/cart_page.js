@@ -23,5 +23,22 @@ $(function() {
     $('#checkout').click(function () {
         alert("Successfully checked out! :)");
     })
-});
+})
+
+function deleteLineItem(id) {
+    $.ajax({
+        url: '/delete-lineitem',
+        type: 'POST',
+        data: {"ticketId" : id},
+        success: function (data) {
+            console.log("LineItem deleted. Data: " + data.responseText);
+            $("#cartItem" + id).remove();
+        },
+        error: function (data) {
+            console.log("LineItem deletion ERROR. Data: " + data.responseText);
+        }
+    })
+}
+
+
 
