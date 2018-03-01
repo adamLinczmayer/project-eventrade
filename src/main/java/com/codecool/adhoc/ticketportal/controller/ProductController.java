@@ -6,6 +6,7 @@ import com.codecool.adhoc.ticketportal.model.Location;
 import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
+import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import com.codecool.adhoc.ticketportal.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,10 +49,15 @@ public class ProductController {
 
     @GetMapping(value = "/event/{id}")
     public String renderSpecificEventPage(Model model,
-                                          @PathVariable("id") String id) {
+                                          @PathVariable("id") String id) throws NoObjectInDatabaseException {
         Long eventId;
         eventId = parseLong(id);
-        model.addAttribute("event", eventService.findById(eventId));
+        Event event = eventService.findById(eventId);
+        if(event == null){
+            throw new NoObjectInDatabaseException("There is no such Event");
+        }
+        model.addAttribute("event", event);
+
         return "event_page";
     }
 
