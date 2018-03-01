@@ -1,26 +1,12 @@
 package com.codecool.adhoc.ticketportal.model;
 
-import javax.persistence.*;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(
-                name = "Band.findAllBands",
-                query = "SELECT b FROM Band b " +
-                        "ORDER BY b.id"),
-        @NamedQuery(
-                name="Band.findBandByName",
-                query = "SELECT b FROM Band b " +
-                        "WHERE b.name LIKE :bandName"),
-        @NamedQuery(
-                name="Band.findBandsByMusicStyle",
-                query = "SELECT b FROM Band b " +
-                        "WHERE b.musicStyle = :musicStyle")
-})
 public class Band {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,9 +50,13 @@ public class Band {
         this.musicStyle = musicStyle;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public String toString() {
