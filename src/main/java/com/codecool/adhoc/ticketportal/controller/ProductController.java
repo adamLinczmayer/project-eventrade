@@ -93,6 +93,8 @@ public class ProductController {
     @PostMapping(value = "/add-to-cart")
     public @ResponseBody void addToCart(@RequestParam Map<String, String> queryParameters){
         Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Integer quantity = Integer.parseInt(queryParameters.get("ticketId"));
+        System.out.println("Quantity= " + quantity);
         Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
                 OrderStatus.CART).get(0);
         Set<LineItem>cartLineItems = cart.getLineItems();
@@ -100,7 +102,7 @@ public class ProductController {
         if(cartLineItems != null && cartLineItems.size() > 0) {
             for(LineItem lineItem:cartLineItems) {
                 if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
-                    lineItem.setQuantity(lineItem.getQuantity()+1);
+                    lineItem.setQuantity(lineItem.getQuantity()+quantity);
                     isItExists = true;
                     System.out.println("LineItem " + lineItem.toString() + " quantity is increased");
                 }
@@ -108,7 +110,7 @@ public class ProductController {
         }
 
         if(!isItExists) {
-            LineItem lineItem = new LineItem(ticketService.findTicketById(ticketId), 1);
+            LineItem lineItem = new LineItem(ticketService.findTicketById(ticketId), quantity);
             cart.addLineItem(lineItem);
 
             System.out.println("LineItem " + lineItem.toString() + " is created");

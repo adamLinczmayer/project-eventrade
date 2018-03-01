@@ -1,9 +1,11 @@
 $(function() {
 
     $('#addToCartBtn').click(function () {
-        var ticketId = $("#ticket_type_election").val();
+        var ticketId = $("#ticket-type-selection").val();
+        var quantity = $("#ticket-quantity").val();
         var details = {
-            "ticketId": ticketId
+            "ticketId": ticketId,
+            "quantity": quantity
         };
         $.ajax({
             url: '/add-to-cart',

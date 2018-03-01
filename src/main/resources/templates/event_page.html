@@ -27,11 +27,11 @@
                 </div>
                 <form id="addToCartForm">
                     Available ticket types:
-                    <select name="ticket_type" id="ticket_type_election">
+                    <select name="ticket_type" id="ticket-type-selection">
                         <option th:each="ticket : ${tickets}" th:value="${ticket.id}" th:text="${ticket.getTicketType()}">
                         </option>
                     </select>
-                    <input type="number" name="quantity" id="ticket-quantity" value=1>
+                    <input type="number" name="quantity" id="ticket-quantity" min="1" value="1">
                     <button type="button" id="addToCartBtn">Add To Cart</button>
                 </form>
                 <div class="alert alert-success fade" role="alert">
