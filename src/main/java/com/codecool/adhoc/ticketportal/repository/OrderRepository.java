@@ -18,7 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Order SET status = ?1 WHERE id = ?2")
-    void updateOrderStatus(@Param("status")OrderStatus orderStatus, @Param("orderId")Long orderId);
+    void updateOrderStatus(@Param("status") OrderStatus orderStatus, @Param("orderId") Long orderId);
 
     List<Order> getOrdersByUsers(User user);
 

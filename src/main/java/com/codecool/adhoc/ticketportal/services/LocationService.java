@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 import java.util.Objects;
 
 
@@ -16,16 +15,16 @@ public class LocationService {
     @Autowired
     LocationRepository locationRepository;
 
-    public Location saveLocation(Location location){
+    public Location saveLocation(Location location) {
         return locationRepository.save(location);
     }
 
 
-    public List<Location> findAllLocation(){
+    public List<Location> findAllLocation() {
         return locationRepository.findAll();
     }
 
-    public Location findById(Long id){
+    public Location findById(Long id) {
         return locationRepository.findById(id);
     }
 
@@ -34,7 +33,7 @@ public class LocationService {
     }
 
     public List<Location> findLocationsByNameIsLike(String name) {
-        if(!Objects.equals(name.trim(), "")){
+        if (!Objects.equals(name.trim(), "")) {
             return locationRepository.findLocationsByNameIsLike(name);
         }
         return null;
