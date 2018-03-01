@@ -8,17 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@NamedQueries({
-        @NamedQuery(
-                name="User.findAllUsers",
-                query="SELECT u FROM User u " +
-                        "ORDER BY u.id"),
-        @NamedQuery(
-                name="User.findUserById",
-                query="SELECT u FROM User u " +
-                        "WHERE u.id = :userId"
-        )
-})
 public class User {
 
     @Id

@@ -1,6 +1,5 @@
 package com.codecool.adhoc.ticketportal.services;
 
-import com.codecool.adhoc.ticketportal.model.LineItem;
 import com.codecool.adhoc.ticketportal.model.Order;
 import com.codecool.adhoc.ticketportal.model.User;
 import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
@@ -16,7 +15,7 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
-    public void saveOrder(Order order){
+    public void saveOrder(Order order) {
         orderRepository.save(order);
     }
 
