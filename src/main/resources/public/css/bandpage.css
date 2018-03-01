@@ -1,0 +1,72 @@
+@media all and (max-width: 480px) {
+    .pixel_960 {
+        max-width: 400px;
+    }
+}
+
+@media all and (max-width: 960px) {
+    .pixel_960 {
+        max-width: 880px;
+    }
+}
+
+@media all and (min-width: 961px) {
+    .pixel_960 {
+        max-width: 960px;
+        min-width: 960px;
+    }
+}
+
+
+.hiddenDiv {
+    display: none;
+}
+
+html {
+    height: 100%;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    background: #333333 url(../img/bg/EvenTrader_bg_20.png) bottom no-repeat fixed;
+    background-size: cover;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    color: #e79c27;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.cart_button {
+    align-content: right;
+}
+
+.logo {
+    max-width: 300px;
+    margin-left: 10px;
+}
+
+.cart_button {
+    max-width: 25px;
+    margin-right: 10px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
