@@ -1,0 +1,91 @@
+body {
+    background: #333333 url(../img/bg/EvenTrader_bg_20.png) center no-repeat fixed;
+    font-size: 8pt;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 50px;
+}
+
+.cart_button {
+    align-content: right;
+}
+
+.logo {
+    max-width: 200px;
+}
+.cart_button {
+    max-width: 25px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pixel_960 {
+    max-width: 960px;
+}
+
+.events_container {
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.events {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.event_picture {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.event_picture:hover {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.event-name {
+    color: white;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+.event-location, .event-date {
+    color: white;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+

@@ -51,6 +51,7 @@ public class InitializerBean {
         eventService.saveEvent(event1);
         eventService.saveEvent(event2);
         eventService.saveEvent(event3);
+        
 
         ticketService.saveTicket(ticket1);
         ticketService.saveTicket(ticket2);
