@@ -80,7 +80,7 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/purchase")
+    @GetMapping(value = "/checkout")
     public String purchasing() {
         User user = userService.findUserById(1L);
         List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);

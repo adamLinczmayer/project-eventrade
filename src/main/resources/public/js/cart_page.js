@@ -18,4 +18,10 @@ function changeQuantity() {
         }
     })
 }
+$(function() {
+
+    $('#checkout').click(function () {
+        alert("Successfully checked out! :)");
+    })
+});
 
