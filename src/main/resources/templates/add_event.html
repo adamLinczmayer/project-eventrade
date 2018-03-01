@@ -16,12 +16,12 @@
         <form action="/save-event" method="post">
             <div id="event-details" class="event_details">
                 Event Name:
-                <input type="text" name="event-name"class="event_name" required><br>
+                <input type="text" name="event-name" class="event_name" required><br>
                 Event Date:
-                <input type="date" name="event-date" required><input type="time" name="event-time" required>
+                <input type="date" name="event-date" class="event_date" required><input type="time" name="event-time" class="event_time"required>
                 <br>
                 Event Description:
-                <textarea name="event-description"></textarea>
+                <input type="text" name="event-description" class="event_description" required>
             </div>
             <div>
                 <br>
@@ -40,9 +40,9 @@
             </div>
             <div>
                 Default Ticket price:
-                <input type="number" name="ticket-price" required>
+                <input type="number" name="ticket-price" class="ticket_price" required>
             </div>
-            <input type="submit" value="Add Event" required>
+            <input type="submit" value="Add Event" class="add_event_button" required>
         </form>
         If your band doesn't exist in our database:
         <button type="button" id="addBandButton" onclick="toggleBandButton()">Add Band</button>
@@ -52,10 +52,10 @@
                 Add a Band to our list
                 <br>
                 Band's Name:
-                <input type="text" name="band-name" required>
+                <input type="text" name="band-name" class="band_name" required>
                 <br>
                 Band's Description:
-                <input type="text" name="band-desc" required>
+                <input type="text" name="band-desc" class="band_desc"required>
                 <br>
                 Band's Style:
                 <select name="musicStyle">

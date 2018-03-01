@@ -71,7 +71,18 @@ a {
     justify-content: center;
 }
 
-.event_name {
+.add_event_button {
+    color: #e79c27;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.event_name, .event_time, .event_date, .event_description, .ticket_price, .band_desc, .band_name {
     color: white;
     border-color: #e79c27;
     background: #333333;
