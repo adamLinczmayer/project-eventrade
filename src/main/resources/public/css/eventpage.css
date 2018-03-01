@@ -41,7 +41,7 @@ body {
 
 a {
     text-decoration: none;
-    color: #e79c27;
+    color: #E6258E;
 }
 
 .header {
@@ -70,4 +70,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.event-image-img {
+    max-width: 400px;
 }

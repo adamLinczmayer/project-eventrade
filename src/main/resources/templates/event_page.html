@@ -11,14 +11,16 @@
             <div th:replace="header :: copy"></div>
             <div class="img-and-info event-img-and-info">
                 <div class="detail-page-image event-image">
-                    <img width="500px" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
+                    <img class="event-image-img" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
 
                 </div>
                 <div class="detail-page-info event-info">
                     <div class="event-name info-row" th:text="${event.name}">event name</div>
                     <div class="event-date info-row" th:text="${event.date}">event date</div>
-                    <div class="event-location info-row" th:text="${event.location.name}">event location</div>
+                    <div class="event-location info-row" th:text="'Location: ' + ${event.location.name}">event location</div>
+                    <br>
                     <div class="event-bands info-row">
+                        <div>Bands: </div>
                         <div class="event-band" th:each="banda : ${event.bands}">
                             <a th:href="'/band/' + ${banda.id}" th:text="${banda.name}">band</a>
                         </div>
