@@ -96,7 +96,7 @@ public class ProductController {
     @PostMapping(value = "/add-to-cart")
     public @ResponseBody void addToCart(@RequestParam Map<String, String> queryParameters){
         Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
-        Integer quantity = Integer.parseInt(queryParameters.get("ticketId"));
+        Integer quantity = Integer.parseInt(queryParameters.get("quantity"));
         System.out.println("Quantity= " + quantity);
         Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
                 OrderStatus.CART).get(0);
