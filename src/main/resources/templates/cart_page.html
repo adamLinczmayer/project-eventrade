@@ -17,6 +17,7 @@
                 <div class="cartItem-date" th:text="${lineItem.getTicket().getEvent().getDate()}">cartItem date</div>
                 <div class="cartItem-location" th:text="${lineItem.getTicket().getEvent().getLocation().getName()}">cartItem location</div>
                 <div class="cartItem-quantity" th:text="${lineItem.getQuantity()}">cartItem quantity</div>
+                <div class="cartItem-ticketType" th:text="${lineItem.getTicket().getTicketType()}">ticket type</div>
                 <br/>
             </div>
         </div>
