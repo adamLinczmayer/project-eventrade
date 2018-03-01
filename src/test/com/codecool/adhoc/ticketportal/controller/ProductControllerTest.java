@@ -7,7 +7,6 @@ import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.services.*;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +35,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -55,11 +53,7 @@ class ProductControllerTest {
     @Mock
     private LocationService locationService;
     @Mock
-    private OrderService orderService;
-    @Mock
     private TicketService ticketService;
-    @Mock
-    private UserService userService;
     @Mock
     private View mockView;
 
@@ -102,7 +96,7 @@ class ProductControllerTest {
     @Test
     void testRenderSpecificEventPage() throws Exception {
         Event expectedEvent = event1;
-        when(eventService.findById(1L)).thenReturn(expectedEvent);
+        when(eventService.findById(any(Long.class))).thenReturn(expectedEvent);
         mockMvc.perform(get("/event/{id}", 1))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("event", expectedEvent));
@@ -119,7 +113,7 @@ class ProductControllerTest {
     @Test
     void testRenderBandPage() throws Exception {
         Band expectedBand = band1;
-        when(bandService.findBandById(1L)).thenReturn(expectedBand);
+        when(bandService.findBandById(any(Long.class))).thenReturn(expectedBand);
         mockMvc.perform(get("/band/{id}", 1))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("bandObject", expectedBand));
@@ -163,7 +157,7 @@ class ProductControllerTest {
         verify(ticketService, times(3)).saveTicket(argument.capture());
         List<Ticket> tickets = argument.getAllValues();
 
-        for (Ticket ticket: tickets) {
+        for (Ticket ticket : tickets) {
             if (ticket.getTicketType().equals(TicketType.NORMAL)) {
                 assertEquals(100, ticket.getPrice(), 0);
             }
