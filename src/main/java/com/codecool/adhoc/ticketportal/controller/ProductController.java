@@ -101,7 +101,6 @@ public class ProductController {
             for(LineItem lineItem:cartLineItems) {
                 if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
                     lineItem.setQuantity(lineItem.getQuantity()+1);
-                    orderService.saveOrder(cart);
                     isItExists = true;
                     System.out.println("LineItem " + lineItem.toString() + " quantity is increased");
                 }
@@ -111,9 +110,10 @@ public class ProductController {
         if(!isItExists) {
             LineItem lineItem = new LineItem(ticketService.findTicketById(ticketId), 1);
             cart.addLineItem(lineItem);
-            orderService.saveOrder(cart);
+
             System.out.println("LineItem " + lineItem.toString() + " is created");
         }
+        orderService.saveOrder(cart);
 
     }
 
