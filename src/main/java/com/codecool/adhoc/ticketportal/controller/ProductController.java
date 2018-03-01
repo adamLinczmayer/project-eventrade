@@ -114,7 +114,6 @@ public class ProductController {
             System.out.println("LineItem " + lineItem.toString() + " is created");
         }
         orderService.saveOrder(cart);
-
     }
 
 
