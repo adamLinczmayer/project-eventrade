@@ -142,6 +142,26 @@ class ProductControllerTest {
     }
 
     @Test
+    void testSaveEvent_SavesRightBand() throws Exception {
+        when(locationService.findById(any(Long.class))).thenReturn(location1);
+        when(bandService.findBandById(any(Long.class))).thenReturn(band1);
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("event-name", "event name");
+        queryParams.put("event-description", "event description");
+        queryParams.put("ticket-price", "100");
+        queryParams.put("location", "345");
+        queryParams.put("event-date", "2016-10-12");
+        queryParams.put("event-time", "12:23");
+        queryParams.put("band", "6");
+        productController.saveEvent(queryParams);
+        ArgumentCaptor<Event> argument = ArgumentCaptor.forClass(Event.class);
+        verify(eventService, times(1)).saveEvent(argument.capture());
+        Event event = argument.getValue();
+        assertEquals("event name", event.getName());
+        assertEquals("event description", event.getDescription());
+    }
+
+    @Test
     void testSaveEvent_SetsRightTicketPrice() throws Exception {
         when(locationService.findById(any(Long.class))).thenReturn(location1);
         when(bandService.findBandById(any(Long.class))).thenReturn(band1);
