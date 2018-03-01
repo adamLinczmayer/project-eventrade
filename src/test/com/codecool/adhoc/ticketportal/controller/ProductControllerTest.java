@@ -3,8 +3,11 @@ package com.codecool.adhoc.ticketportal.controller;
 import com.codecool.adhoc.ticketportal.model.Band;
 import com.codecool.adhoc.ticketportal.model.Event;
 import com.codecool.adhoc.ticketportal.model.Location;
+import com.codecool.adhoc.ticketportal.model.Ticket;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
+import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.services.*;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,8 +24,11 @@ import org.springframework.web.servlet.View;
 
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
@@ -72,10 +78,10 @@ class ProductControllerTest {
                 .build();
         band1 = new Band("band1", MusicStyle.JAZZ, "desc");
         band2 = new Band("band2", MusicStyle.LATIN, "desc");
-        event1 = new Event("event1", new Location(), "2020-10-10-10:10", "desc");
-        event2 = new Event("event2", new Location(), "2019-01-01-01:01", "desc");
         location1 = new Location("location1", "address", 500);
         location2 = new Location("location2", "address", 1200);
+        event1 = new Event("event1", location1, "2020-10-10-10:10", "desc");
+        event2 = new Event("event2", location2, "2019-01-01-01:01", "desc");
     }
 
     @Test
@@ -131,32 +137,44 @@ class ProductControllerTest {
     void testRenderAddEventPage() throws Exception {
         List<Band> expectedBands = Arrays.asList(band1, band2);
         List<Location> expectedLocations = Arrays.asList(location1, location2);
-        MusicStyle[] expectedMusicStyles = {MusicStyle.FOLK, MusicStyle.SOUL};
         when(bandService.findAllBand()).thenReturn(expectedBands);
-        // when(locationService.findAll()).thenReturn(expectedLocations);
-        when(MusicStyle.values()).thenReturn(expectedMusicStyles);
+        when(locationService.findAllLocation()).thenReturn(expectedLocations);
         mockMvc.perform(get("/addevent", 1))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("allBand", expectedBands))
                 .andExpect(model().attribute("locations", expectedLocations))
-                .andExpect(model().attribute("musicStyles", expectedMusicStyles));
+                .andExpect(model().attribute("musicStyles", MusicStyle.values()));
     }
 
     @Test
-    void testSaveEvent() throws Exception {
-        Event addedEvent = event2;
-        when(eventService.saveEvent(isA(Event.class))).thenReturn(addedEvent);
-        mockMvc.perform(post("/save-event")
-                .param("event-name", "event2")
-                .param("location", "?")
-                .param("event-date", "2019-01-01")
-                .param("event-time", "01:01")
-                .param("event-description", "desc"))
-                .andExpect(status().isFound())
-                .andExpect(view().name("redirect:/"));
-        ArgumentCaptor<Event> formObjectArgument = ArgumentCaptor.forClass(Event.class);
-        verify(eventService, times(1)).saveEvent(formObjectArgument.capture());
-        verifyNoMoreInteractions(eventService);
+    void testSaveEvent_SetsRightTicketPrice() throws Exception {
+        when(locationService.findById(any(Long.class))).thenReturn(location1);
+        when(bandService.findBandById(any(Long.class))).thenReturn(band1);
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("ticket-price", "100");
+        queryParams.put("location", "345");
+        queryParams.put("event-date", "2016-10-12");
+        queryParams.put("event-time", "12:23");
+        queryParams.put("band", "6");
+        productController.saveEvent(queryParams);
+
+        ArgumentCaptor<Ticket> argument = ArgumentCaptor.forClass(Ticket.class);
+        verify(ticketService, times(3)).saveTicket(argument.capture());
+        List<Ticket> tickets = argument.getAllValues();
+
+        for (Ticket ticket: tickets) {
+            if (ticket.getTicketType().equals(TicketType.NORMAL)) {
+                assertEquals(100, ticket.getPrice(), 0);
+            }
+            if (ticket.getTicketType().equals(TicketType.STUDENT)) {
+                assertEquals(50, ticket.getPrice(), 0);
+            }
+            if (ticket.getTicketType().equals(TicketType.GROUP)) {
+                assertEquals(350, ticket.getPrice(), 0);
+            }
+        }
+        assertEquals(3, tickets.size());
     }
 
     @Test
@@ -165,7 +183,7 @@ class ProductControllerTest {
         when(bandService.saveBand(isA(Band.class))).thenReturn(addedBand);
         mockMvc.perform(post("/add-band")
                 .param("name", "band2")
-                .param("musicStyle", "latin")
+                .param("musicStyle", "LATIN")
                 .param("description", "desc"))
                 .andExpect(status().isOk());
         ArgumentCaptor<Band> formObjectArgument = ArgumentCaptor.forClass(Band.class);
