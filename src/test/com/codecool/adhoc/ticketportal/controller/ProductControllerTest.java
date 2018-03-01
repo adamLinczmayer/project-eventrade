@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Long.parseLong;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isA;
@@ -144,7 +145,6 @@ class ProductControllerTest {
     void testSaveEvent_SetsRightTicketPrice() throws Exception {
         when(locationService.findById(any(Long.class))).thenReturn(location1);
         when(bandService.findBandById(any(Long.class))).thenReturn(band1);
-
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put("ticket-price", "100");
         queryParams.put("location", "345");
@@ -152,11 +152,9 @@ class ProductControllerTest {
         queryParams.put("event-time", "12:23");
         queryParams.put("band", "6");
         productController.saveEvent(queryParams);
-
         ArgumentCaptor<Ticket> argument = ArgumentCaptor.forClass(Ticket.class);
         verify(ticketService, times(3)).saveTicket(argument.capture());
         List<Ticket> tickets = argument.getAllValues();
-
         for (Ticket ticket : tickets) {
             if (ticket.getTicketType().equals(TicketType.NORMAL)) {
                 assertEquals(100, ticket.getPrice(), 0);
@@ -169,6 +167,22 @@ class ProductControllerTest {
             }
         }
         assertEquals(3, tickets.size());
+    }
+
+    @Test
+    void testSaveEvent_AddsRightBand() throws Exception {
+        when(locationService.findById(any(Long.class))).thenReturn(location1);
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("ticket-price", "100");
+        queryParams.put("location", "345");
+        queryParams.put("event-date", "2016-10-12");
+        queryParams.put("event-time", "12:23");
+        queryParams.put("band", "20");
+        productController.saveEvent(queryParams);
+        ArgumentCaptor<Long> argument = ArgumentCaptor.forClass(Long.class);
+        verify(bandService, times(1)).findBandById(argument.capture());
+        Long bandId = argument.getValue();
+        assertEquals(20, bandId, 0);
     }
 
     @Test
