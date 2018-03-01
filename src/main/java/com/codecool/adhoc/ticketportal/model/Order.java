@@ -6,12 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "Order.findByUserId",
-                    query = "SELECT o FROM Order o " +
-                            "WHERE o.users = :users_id")
-})
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
     @Id

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LocationRepository extends JpaRepository<Location, Long>{
+public interface LocationRepository extends JpaRepository<Location, Long> {
+
+
+    Location findById(Long id);
 
     List<Location> findLocationsByNameIsLike(String name);
 

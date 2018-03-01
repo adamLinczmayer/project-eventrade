@@ -3,20 +3,11 @@ package com.codecool.adhoc.ticketportal.model;
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.*;
+import java.util.List;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(
-                name = "Event.findAllEvents",
-                query = "SELECT e FROM Event e "),
-        @NamedQuery(
-                name="Event.findUpcomingEvents",
-                query = "SELECT e FROM Event e " +
-                        "WHERE e.date < :currentDate"
-        )
-})
 public class Event {
     @Transient
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm");
@@ -37,7 +28,7 @@ public class Event {
     }
 
 
-    public Event(String name, Location location, String date, String description) throws ParseException{
+    public Event(String name, Location location, String date, String description) throws ParseException {
         this.name = name;
         this.location = location;
         this.date = simpleDateFormat.parse(date);
@@ -45,7 +36,9 @@ public class Event {
 
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
     public Location getLocation() {
         return location;
@@ -79,9 +72,13 @@ public class Event {
         this.name = name;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public String toString() {

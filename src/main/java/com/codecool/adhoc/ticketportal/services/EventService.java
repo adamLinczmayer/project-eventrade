@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +24,8 @@ public class EventService {
         return eventRepository.findOne(id);
     }
 
-    public void saveEvent(Event event){
-        eventRepository.save(event);
+    public Event saveEvent(Event event) {
+        return eventRepository.save(event);
     }
 
     public List<Event> findUpcomingEvents() throws ParseException {

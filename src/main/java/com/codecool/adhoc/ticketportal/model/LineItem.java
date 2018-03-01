@@ -1,6 +1,7 @@
 package com.codecool.adhoc.ticketportal.model;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class LineItem {

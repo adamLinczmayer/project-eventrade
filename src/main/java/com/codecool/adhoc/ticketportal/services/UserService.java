@@ -13,7 +13,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void saveUser(User user){
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 
@@ -25,7 +25,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findByName(String name){
+    public User findByName(String name) {
         return userRepository.findUserByUserName(name);
     }
 }
