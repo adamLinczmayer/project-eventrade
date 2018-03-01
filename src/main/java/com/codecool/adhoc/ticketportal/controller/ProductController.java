@@ -1,10 +1,8 @@
 package com.codecool.adhoc.ticketportal.controller;
 
-import com.codecool.adhoc.ticketportal.model.Band;
-import com.codecool.adhoc.ticketportal.model.Event;
-import com.codecool.adhoc.ticketportal.model.Location;
-import com.codecool.adhoc.ticketportal.model.Ticket;
+import com.codecool.adhoc.ticketportal.model.*;
 import com.codecool.adhoc.ticketportal.model.enums.MusicStyle;
+import com.codecool.adhoc.ticketportal.model.enums.OrderStatus;
 import com.codecool.adhoc.ticketportal.model.enums.TicketType;
 import com.codecool.adhoc.ticketportal.model.excepitons.NoObjectInDatabaseException;
 import com.codecool.adhoc.ticketportal.services.*;
@@ -14,7 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import java.util.Map;
+
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
@@ -53,11 +56,13 @@ public class ProductController {
         Long eventId;
         eventId = parseLong(id);
         Event event = eventService.findById(eventId);
+        List<Ticket> tickets = ticketService.findTicketsByEvent(event);
+        model.addAttribute("event", event);
+        model.addAttribute("tickets", tickets);
         if(event == null){
             throw new NoObjectInDatabaseException("There is no such Event");
         }
         model.addAttribute("event", event);
-
         return "event_page";
     }
 
@@ -75,6 +80,29 @@ public class ProductController {
         return "band_page";
     }
 
+
+    @GetMapping(value = "/cart")
+    public String renderCartPage(Model model) {
+        User user = userService.findUserById(1L);
+        List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
+        Order order = orders.get(0); // There is only 1 order with cart status
+        Set<LineItem> lineItems = order.getLineItems();
+        model.addAttribute("lineItems", lineItems);
+        return "cart_page";
+    }
+
+
+    @GetMapping(value = "/checkout")
+    public String purchasing() {
+        User user = userService.findUserById(1L);
+        List<Order> orders = orderService.getOrdersByUserIdAndStatus(user, OrderStatus.CART);
+        Order order = orders.get(0);
+        order.setStatus(OrderStatus.CHECKOUT);
+        orderService.saveOrder(order);
+        Order newOrder = new Order(user, OrderStatus.CART);
+        orderService.saveOrder(newOrder);
+        return "redirect:/";
+    }
 
     @GetMapping(value = "/addevent")
     public String renderAddEventPage(Model model){
@@ -103,6 +131,7 @@ public class ProductController {
         return "redirect:/";
     }
 
+
     @PostMapping(value = "/add-band")
     public @ResponseBody Band saveBand(@RequestParam Map<String, String> queryParameters){
         Band band = new Band(queryParameters.get("name"), MusicStyle.valueOf(queryParameters.get("musicStyle")), queryParameters.get("description"));
@@ -111,10 +140,65 @@ public class ProductController {
         return savedBand;
     }
 
+    
+    @PostMapping(value = "/add-to-cart")
+    public @ResponseBody void addToCart(@RequestParam Map<String, String> queryParameters) {
+        Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Integer quantity = Integer.parseInt(queryParameters.get("quantity"));
+        Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
+                OrderStatus.CART).get(0);
+        Set<LineItem> cartLineItems = cart.getLineItems();
+        boolean isItExists = false;
+        if (cartLineItems != null && cartLineItems.size() > 0) {
+            for (LineItem lineItem : cartLineItems) {
+                if (Objects.equals(lineItem.getTicket().getId(), ticketId)) {
+                    lineItem.setQuantity(lineItem.getQuantity() + quantity);
+                    isItExists = true;
+                }
+            }
+        }
+
+        if (!isItExists) {
+            LineItem lineItem = new LineItem(ticketService.findTicketById(ticketId), quantity);
+            cart.addLineItem(lineItem);
+        }
+        orderService.saveOrder(cart);
+    }
+
     @PostMapping(value = "/add-location")
     public @ResponseBody Location saveLocation(@RequestParam Map<String, String> queryParameters){
         Location location = locationService.saveLocation(new Location(queryParameters.get("name"), queryParameters.get("address"), parseInt(queryParameters.get("capacity"))));
         return location;
     }
 
+    @PostMapping(value = "/change-quantity")
+    public @ResponseBody void changeQuantity(@RequestParam Map<String, String> queryParameters) {
+        Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Integer quantity = Integer.parseInt(queryParameters.get("quantity"));
+        Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
+                OrderStatus.CART).get(0);
+        Set<LineItem>cartLineItems = cart.getLineItems();
+        for(LineItem lineItem:cartLineItems) {
+            if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
+                lineItem.setQuantity(quantity);
+            }
+        }
+        cart.setLineItems(cartLineItems);
+        orderService.saveOrder(cart);
+    }
+
+    @PostMapping(value = "/delete-lineitem")
+    public @ResponseBody void deleteLineItem(@RequestParam Map<String, String> queryParameters) {
+        Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
+        Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
+                OrderStatus.CART).get(0);
+        Set<LineItem>cartLineItems = cart.getLineItems();
+        for(LineItem lineItem:cartLineItems) {
+            if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
+                cartLineItems.remove(lineItem);
+            }
+        }
+        cart.setLineItems(cartLineItems);
+        orderService.saveOrder(cart);
+    }
 }
