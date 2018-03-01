@@ -96,11 +96,23 @@ public class ProductController {
         Long ticketId = Long.parseLong(queryParameters.get("ticketId"), 10);
         Order cart = orderService.getOrdersByUserIdAndStatus(userService.findUserById(1L),
                 OrderStatus.CART).get(0);
-        Set<LineItem> lineItems = cart.getLineItems();
-        for (LineItem lineItem:lineItems) {
-            System.out.println(lineItem);
+        Set<LineItem>cartLineItems = cart.getLineItems();
+        boolean isItExists = false;
+        for(LineItem lineItem:cartLineItems) {
+            if(Objects.equals(lineItem.getTicket().getId(), ticketId)) {
+                lineItem.setQuantity(lineItem.getQuantity()+1);
+                orderService.saveOrder(cart);
+                isItExists = true;
+                System.out.println("LineItem " + lineItem.toString() + " quantity is increased");
+            }
         }
-        System.out.println(ticketId);
+        if(!isItExists) {
+            LineItem lineItem = new LineItem(ticketService.findTicketById(ticketId), 1);
+            cart.addLineItem(lineItem);
+            orderService.saveOrder(cart);
+            System.out.println("LineItem " + lineItem.toString() + " is created");
+        }
+
     }
 
 

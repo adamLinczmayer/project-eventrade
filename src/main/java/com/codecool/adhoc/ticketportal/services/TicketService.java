@@ -22,4 +22,8 @@ public class TicketService {
         return ticketRepository.findTicketsByEvent(event);
     }
 
+    public Ticket findTicketById(Long id) {
+        return ticketRepository.findOne(id);
+    }
+
 }
