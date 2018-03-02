@@ -2,27 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link href="/css/events.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon"
+          type="image/png"
+          href="http://icons.iconarchive.com/icons/iconsmind/outline/512/Rock-andRoll-icon.png">
     <title>All Events</title>
 </head>
 <body>
-    <div class="container">
-        <div class="960">
-            <h1>ALL EVENTS</h1>
-            <div class="search-panel"></div>
+
+
+<div class="container">
+    <div class="pixel_960">
+        <div th:replace="header :: copy"></div>
+        <div class="events_container">
             <div class="events" th:each="event, iterStat : ${events}">
                 <div class="event">
                     <div class="event-image">
                         <a th:href="'/event/' + ${event.id}">
-                            <img width="250" th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture"/>
+                            <img th:attr="src='/img/event/event_' + ${event.id} + '.jpg'" alt="event picture" class="event_picture">
                         </a>
                     </div>
                     <div class="event-name" th:text="${event.getName()}">event name</div>
                     <div class="event-date" th:text="${event.getDate()}">event date</div>
                     <div class="event-location" th:text="${event.getLocation().getName()}">event location</div>
-                    <br/>
                 </div>
             </div>
+            <a href="/addevent"> <div class="events"><div class="add_event">Add event</div></div></a>
         </div>
     </div>
+</div>
 </body>
 </html>

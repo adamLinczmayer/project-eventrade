@@ -1,0 +1,163 @@
+@media all and (max-width: 480px) {
+    .pixel_960 {
+        max-width: 400px;
+    }
+}
+
+@media all and (max-width: 960px) {
+    .pixel_960 {
+        max-width: 880px;
+    }
+}
+
+@media all and (min-width: 961px) {
+    .pixel_960 {
+        max-width: 960px;
+        min-width: 960px;
+    }
+}
+
+.alert-success_fade {
+    margin: auto;
+    position: absolute;
+    top: 2%;
+    left: 48%;
+    bottom: 93%;
+    right: 28%;
+    color: white;
+    background: #ed2792;
+    display: inline-block;
+    font-size: 0.8em;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 45px;
+    box-shadow: 3px 3px 15px 0px rgb(0, 0, 0);
+}
+
+.alert {
+    display: none;
+}
+
+html {
+    height: 100%;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    background: #333333 url(../img/bg/EvenTrader_bg_20.png) bottom no-repeat fixed;
+    background-size: cover;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    color: #e79c27;
+}
+
+a {
+    text-decoration: none;
+    color: #E6258E;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.detail-page-info {
+    padding-left: 40px;
+}
+
+.event-img-and-info {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 300px;
+}
+
+.cart_button {
+    max-width: 40px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-image-img {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 8px 8px 14px black;
+}
+
+.event-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    font-size: 0.9em;
+    font-weight: lighter;
+    margin-bottom: 4px;
+}
+
+.event-location {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.bands_on {
+    font-weight: bolder;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+.addToCartForm {
+    font-size: 12pt;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.add_to_cart_button {
+    font-size: 12pt;
+    color: #e79c27;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.ticket_select {
+    font-size: 12pt;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #e79c27;
+    color: #333333;
+    border: none;
+}
+
+.ticket_quantity {
+    font-size: 12pt;
+    color: white;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,123 @@
+@media all and (max-width: 480px) {
+    .pixel_960 {
+        max-width: 400px;
+    }
+}
+
+@media all and (max-width: 960px) {
+    .pixel_960 {
+        max-width: 880px;
+    }
+}
+
+@media all and (min-width: 961px) {
+    .pixel_960 {
+        max-width: 960px;
+        min-width: 960px;
+    }
+}
+
+.pixel_960 {
+    margin-bottom: 30px;
+}
+
+.hiddenDiv {
+    display: none;
+}
+
+html {
+    height: 100%;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    background: #333333 url(../img/bg/EvenTrader_bg_20.png) bottom no-repeat fixed;
+    background-size: cover;
+    font-size: 14pt;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    color: #e79c27;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    max-width: 300px;
+}
+
+.cart_button {
+    max-width: 40px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_event_button, .add_band_button, .add_location_button, .submit_band_button, .submit_location_button {
+    display: flex;
+    color: #e79c27;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14pt;
+}
+
+.event_name, .event_time, .event_date, .event_description, .ticket_price,
+.band_desc, .band_name, .location_name, .location_address, .location_capacity {
+    display: flex;
+    color: white;
+    border-color: #e79c27;
+    background: #333333;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12pt;
+}
+.event_name:focus {
+    border: none;
+}
+
+.band_select, .location_select, .style_select {
+    display: flex;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #e79c27;
+    color: #333333;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12pt;
+}
+
+.page_title {
+    font-weight: bold;
+    color: #e79c27;
+    font-size: 1.2em;
+    text-align: right;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px black;
+
+}

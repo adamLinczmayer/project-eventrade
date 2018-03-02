@@ -2,24 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="/css/bandpage.css">
         <title>Band Page</title>
     </head>
     <body>
         <div class="container">
-            <div class="960">
-                <br/>
-                <a href="/events">Home</a>
-                <br/>
-                <h1>BAND PAGE</h1>
+            <div class="pixel_960">
+                <div th:replace="header :: copy"></div>
                 <div class="img-and-info band-img-and-info">
                     <div class="detail-page-image band-image">
-                        <img width="300px" th:attr="src='/img/band/band_' + ${bandObject.id} + '.jpg'" alt="band picture"/>
+                        <img class="band-image-img" th:attr="src='/img/band/band_' + ${bandObject.id} + '.jpg'" alt="band picture"/>
 
                     </div>
                     <div class="detail-page-info band-info" >
                         <div class="band-name info-row" th:text="${bandObject.name}">band name</div>
                         <div class="band-genres info-row">
-                            <a href="" class="band-genres" th:text="${bandObject.musicStyle}">band genre</a>
+                            <div class="band-genres" th:text="${bandObject.musicStyle}">band genre</div>
                         </div>
                     </div>
                     <br/>
