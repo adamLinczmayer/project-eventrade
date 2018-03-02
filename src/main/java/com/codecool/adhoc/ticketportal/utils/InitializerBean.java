@@ -60,7 +60,6 @@ public class InitializerBean {
         eventService.saveEvent(new Event("World Tour 5", location2, "2018-03-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014."));
         eventService.saveEvent(new Event("World Tour 6", location2, "2018-03-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014."));
         eventService.saveEvent(new Event("Bust World 7", location2, "2018-03-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014."));
-        eventService.saveEvent(new Event("Bust World 8", location2, "2018-03-16-10:00", "Rock or Bust World Tour was a 2015-2016 concert tour by Australian rock band AC/DC in support of the group's sixteenth studio album, Rock or Bust, released in November 2014."));
 
 
         ticketService.saveTicket(ticket1);

@@ -17,16 +17,6 @@
     }
 }
 
-.band-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hiddenDiv {
-    display: none;
-}
-
 html {
     height: 100%;
 }
@@ -55,11 +45,6 @@ a {
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 20px;
-    margin-bottom: 40px;
-}
-
-.cart_button {
-    align-content: right;
 }
 
 .logo {
@@ -76,34 +61,20 @@ a {
     justify-content: center;
 }
 
-.band-genres {
-    text-transform: lowercase;
-}
-
-.band-name {
-    font-weight: bold;
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 15px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 15px;
 }
 
-.band-image-img {
-    max-width: 350px;
-    border-radius: 15px;
-    box-shadow: 8px 8px 14px black;
-}
-
-.info-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.band-description {
+.checkout{
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+.cartitem_pic {
+    max-width: 100px;
 }

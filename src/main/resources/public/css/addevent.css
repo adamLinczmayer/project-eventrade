@@ -54,18 +54,12 @@ a {
     padding-bottom: 20px;
 }
 
-.cart_button {
-    align-content: right;
-}
-
 .logo {
     max-width: 300px;
-    margin-left: 10px;
 }
 
 .cart_button {
-    max-width: 25px;
-    margin-right: 10px;
+    max-width: 40px;
 }
 
 .container {
@@ -75,38 +69,46 @@ a {
 }
 
 .add_event_button, .add_band_button, .add_location_button, .submit_band_button, .submit_location_button {
+    display: flex;
     color: #e79c27;
     border-color: #e79c27;
     background: #333333;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14pt;
 }
 
 .event_name, .event_time, .event_date, .event_description, .ticket_price,
 .band_desc, .band_name, .location_name, .location_address, .location_capacity {
+    display: flex;
     color: white;
     border-color: #e79c27;
     background: #333333;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12pt;
 }
 .event_name:focus {
     border: none;
 }
 
 .band_select, .location_select, .style_select {
+    display: flex;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     background-color: #e79c27;
     color: #333333;
     border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12pt;
 }
 
 .page_title {
@@ -116,4 +118,6 @@ a {
     text-align: right;
     margin-bottom: 40px;
     text-transform: uppercase;
+    text-shadow: 3px 3px 5px black;
+
 }

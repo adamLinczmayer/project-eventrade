@@ -69,7 +69,7 @@ a {
 }
 
 .detail-page-info {
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .event-img-and-info {
@@ -119,7 +119,8 @@ a {
 
 .bands_on {
     font-weight: bolder;
-    background: #70141e;
+    text-decoration: underline;
+    margin-bottom: 5px;
 }
 
 .addToCartForm {

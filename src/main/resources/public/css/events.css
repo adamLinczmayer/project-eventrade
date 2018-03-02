@@ -1,4 +1,5 @@
 html {
+    color: #e79c27;
     height: 100%;
 }
 
@@ -12,6 +13,7 @@ body {
     font-size: 8pt;
     font-family: 'Roboto', sans-serif;
     height: 100%;
+    color: #e79c27;
 }
 
 a {
@@ -82,6 +84,27 @@ a {
     text-align: center;
     line-height: 220px;
     font-size: 1.2em;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.add_event:hover {
+    color: #e79c27;
+    min-height: 220px;
+    border: 2px;
+    border-style: dashed;
+    border-color: #e79c27;
+    text-align: center;
+    line-height: 220px;
+    font-size: 1.2em;
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
 }
 
 .event_picture {
@@ -92,6 +115,7 @@ a {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
+
 .event_picture:hover {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
@@ -101,15 +125,13 @@ a {
 }
 
 .event-name {
-    color: white;
-    margin-bottom: 2px;
-    margin-top: 5px;
+    margin-bottom: 6px;
+    margin-top: 15px;
 }
 
 .event-location, .event-date {
-    color: white;
-    margin-bottom: 1px;
-    margin-top: 1px;
+    margin-bottom: 4px;
+    margin-top: 4px;
 }
 
 
